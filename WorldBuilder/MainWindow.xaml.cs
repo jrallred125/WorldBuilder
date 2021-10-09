@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace WorldBuilder
 {
@@ -24,5 +25,21 @@ namespace WorldBuilder
         {
             InitializeComponent();
         }
+
+        /*private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                imgDynamic.Source = new BitmapImage(fileUri);
+            }
+        }
+
+        private void BtnLoadFromResource_Click(object sender, RoutedEventArgs e)
+        {
+            Uri resourceUri = new Uri("/Images/hidden_horde.jpg", UriKind.Relative);
+            imgDynamic.Source = new BitmapImage(resourceUri);
+        }*/
     }
 }
