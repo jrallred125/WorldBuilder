@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media.Imaging;
 
-namespace WorldBuilder
+namespace WorldBuilder.Domain.Models
 {
-    public abstract class ACharacter
+    public class Character : DBclass
     {
         /// <summary>
         /// The name of the Character.
@@ -32,6 +33,10 @@ namespace WorldBuilder
         /// </summary>
         public string Height { get; set; }
         /// <summary>
+        /// How much the character weights.
+        /// </summary>
+        public string Weight { get; set; }
+        /// <summary>
         /// The race that the character is.
         /// </summary>
         public string Race { get; set; }
@@ -44,25 +49,26 @@ namespace WorldBuilder
         /// </summary>
         public string Dislikes { get; set; }
         /// <summary>
-        /// What the character finds enjoyable in a sexual way. 
-        /// </summary>
-        public string Kinks { get; set; }
-        /// <summary>
         /// The story of the character before they were made.
         /// </summary>
         public string Backstory { get; set; }
         /// <summary>
         /// A list of whom the character knows. 
         /// </summary>
-        public List<ACharacter> Contacts { get; set; }
+        public List<Character> Contacts { get; set; }
+        /// <summary>
+        /// This is a gallery of images for a character. 
+        /// </summary>
+        public List<BitmapImage> Gallery { get; set; }
 
-        public ACharacter(string name, string personality, string apparance)
+        public Character(string name, string personality, string apparance)
         {
             Name = name;
             Personality = personality;
             Apparance = apparance;
             Titles = new List<string>();
-            Contacts = new List<ACharacter>();
+            Contacts = new List<Character>();
+            Gallery = new List<BitmapImage>();
         }
 
         /// <summary>
@@ -73,6 +79,7 @@ namespace WorldBuilder
         {
             Titles.Add(title);
         }
+
         /// <summary>
         /// This will remove a title from the list of titles the character has been given.
         /// </summary>
@@ -87,7 +94,7 @@ namespace WorldBuilder
         /// </summary>
         /// <param name="contact">The character to add to the list.</param>
         /// <param name="addToBolth">If the contant should add the character to their list. Default is false.</param>
-        public void AddContact(ACharacter contact, bool addToBolth = false)
+        public void AddContact(Character contact, bool addToBolth = false)
         {
             if (!Contacts.Contains(contact))
             {
@@ -97,6 +104,38 @@ namespace WorldBuilder
                     contact.AddContact(this);
                 }
             }
+        }
+
+        /// <summary>
+        /// This will remove a character from the contatcts list. 
+        /// </summary>
+        /// <param name="contact">The contact that should be removed.</param>
+        /// <param name="removeBoth">if the contact should removed the character from their list. Default is false.</param>
+        public void RemoveContact(Character contact, bool removeBoth = false)
+        {
+            Contacts.Remove(contact);
+            if (removeBoth)
+            {
+                contact.RemoveContact(this);
+            }
+        }
+
+        /// <summary>
+        /// This will add an image to the character's image gallery. 
+        /// </summary>
+        /// <param name="image">The image to be added.</param>
+        public void AddImage(BitmapImage image)
+        {
+            Gallery.Add(image);
+        }
+
+        /// <summary>
+        /// This will remove an image from the character's gallery.
+        /// </summary>
+        /// <param name="image">The image to be removed.</param>
+        public void RemoveImage(BitmapImage image)
+        {
+            Gallery.Remove(image);
         }
     }
 }
