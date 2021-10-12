@@ -60,7 +60,12 @@ namespace WorldBuilder.Domain.Models
         /// This is a gallery of images for a character. 
         /// </summary>
         public List<BitmapImage> Gallery { get; set; }
-
+        /// <summary>
+        /// The basic constructor for the Character class. 
+        /// </summary>
+        /// <param name="name">The name for the character.</param>
+        /// <param name="personality">The Personality for the character.</param>
+        /// <param name="apparance">The apparance of the character.</param>
         public Character(string name, string personality, string apparance)
         {
             Name = name;
@@ -77,7 +82,10 @@ namespace WorldBuilder.Domain.Models
         /// <param name="title">The title to be added.</param>
         public void AddTitle(string title)
         {
-            Titles.Add(title);
+            if (!Titles.Contains(title) && !String.IsNullOrWhiteSpace(title))
+            {
+                Titles.Add(title);
+            }
         }
 
         /// <summary>
@@ -96,7 +104,7 @@ namespace WorldBuilder.Domain.Models
         /// <param name="addToBolth">If the contant should add the character to their list. Default is false.</param>
         public void AddContact(Character contact, bool addToBolth = false)
         {
-            if (!Contacts.Contains(contact))
+            if (!Contacts.Contains(contact) && contact != null)
             {
                 Contacts.Add(contact);
                 if (addToBolth)
@@ -126,7 +134,10 @@ namespace WorldBuilder.Domain.Models
         /// <param name="image">The image to be added.</param>
         public void AddImage(BitmapImage image)
         {
-            Gallery.Add(image);
+            if (!Gallery.Contains(image) && image != null)
+            {
+                Gallery.Add(image);
+            }
         }
 
         /// <summary>

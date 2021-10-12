@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WorldBuilder.Domain\WorldBuilder.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
