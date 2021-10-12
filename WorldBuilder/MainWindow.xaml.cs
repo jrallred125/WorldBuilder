@@ -26,7 +26,7 @@ namespace WorldBuilder
             InitializeComponent();
         }
 
-        /*private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
+        private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -40,6 +40,6 @@ namespace WorldBuilder
         {
             Uri resourceUri = new Uri("/Images/hidden_horde.jpg", UriKind.Relative);
             imgDynamic.Source = new BitmapImage(resourceUri);
-        }*/
+        }
     }
 }
