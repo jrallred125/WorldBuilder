@@ -59,7 +59,7 @@ namespace WorldBuilder.Domain.Models
         /// <summary>
         /// This is a gallery of images for a character. 
         /// </summary>
-        public List<BitmapImage> Gallery { get; set; }
+        public ImageGallery Gallery { get; set; }
         /// <summary>
         /// The basic constructor for the Character class. 
         /// </summary>
@@ -73,7 +73,7 @@ namespace WorldBuilder.Domain.Models
             Apparance = apparance;
             Titles = new List<string>();
             Contacts = new List<Character>();
-            Gallery = new List<BitmapImage>();
+            Gallery = new ImageGallery();
         }
 
         /// <summary>
@@ -134,10 +134,7 @@ namespace WorldBuilder.Domain.Models
         /// <param name="image">The image to be added.</param>
         public void AddImage(BitmapImage image)
         {
-            if (!Gallery.Contains(image) && image != null)
-            {
-                Gallery.Add(image);
-            }
+            Gallery.AddImage(image);
         }
 
         /// <summary>
@@ -146,7 +143,7 @@ namespace WorldBuilder.Domain.Models
         /// <param name="image">The image to be removed.</param>
         public void RemoveImage(BitmapImage image)
         {
-            Gallery.Remove(image);
+            Gallery.RemoveImage(image);
         }
     }
 }

@@ -9,12 +9,16 @@
     <Grid>
         <StackPanel>
             <WrapPanel Margin="10" HorizontalAlignment="Center">
-                <Button Name="btnLoadFromFile" Margin="0,0,20,0" Click="BtnLoadFromFile_Click">Load from File...</Button>
-                <Button Name="btnLoadFromResource" Click="BtnLoadFromResource_Click">Load from Resource</Button>
+                <Button Name="btnAddToGallery" Margin="0,0,20,0" Click="BtnLoadFromFile_Click">Add to Gallery</Button>
+                <Button Name="btnLoadCurrentImage" Click="BtnLoadFromResource_Click">Load Current Index</Button>
             </WrapPanel>
-            <Viewbox>
-                <Image Name="imgDynamic" Margin="10"  />
+            <Viewbox Height="350" Width="750">
+                <Image Name="imgDynamic" Margin="1"  />
             </Viewbox>
+            <WrapPanel Margin="10" HorizontalAlignment="Center">
+                <Button Name="btnPrevious" Margin="0,0,20,0" Click="BtnPrevImage_Click">Prev</Button>
+                <Button Name="btnNext" Margin="0,0,20,0" Click="BtnNextImage_Click">Next</Button>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>
