@@ -33,7 +33,6 @@ namespace WorldBuilder.Domain.Models
                 Gallery.Add(image);
             }
         }
-
         /// <summary>
         /// This will remove an image from the character's gallery.
         /// </summary>
@@ -48,7 +47,7 @@ namespace WorldBuilder.Domain.Models
         /// <returns>The image at the changed index</returns>
         public BitmapImage Prev()
         {
-            if (Gallery.Count == 0)
+            if (!Gallery.Any())
             {
                 Index = 0;
                 return null;
@@ -69,7 +68,7 @@ namespace WorldBuilder.Domain.Models
         /// <returns>The image at the changed index</returns>
         public BitmapImage Next()
         {
-            if (Gallery.Count == 0)
+            if (!Gallery.Any())
             {
                 Index = 0;
                 return null;
@@ -84,7 +83,7 @@ namespace WorldBuilder.Domain.Models
         /// <returns>The image at the current index value.</returns>
         public BitmapImage Current()
         {
-            if (Gallery.Count == 0)
+            if (!Gallery.Any())
             {
                 Index = 0;
                 return null;
