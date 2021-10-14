@@ -23,7 +23,6 @@ namespace WorldBuilder.WPF
     public partial class MainWindow : Window
     {
         Character A;
-        int index;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,11 +43,7 @@ namespace WorldBuilder.WPF
         }
         private void BtnLoadFromResource_Click(object sender, RoutedEventArgs e)
         {
-            if (A.Gallery.Gallery.Count > 0)
-            {
-                imgDynamic.Source = A.Gallery.Gallery[0];
-            }
-            
+            imgDynamic.Source = A.Gallery.Current();
         }
 
         private void BtnNextImage_Click(object sender, RoutedEventArgs e)
@@ -59,6 +54,12 @@ namespace WorldBuilder.WPF
         private void BtnPrevImage_Click(object sender, RoutedEventArgs e)
         {
            
+            imgDynamic.Source = A.Gallery.Prev();
+        }
+
+        private void BtnRemoveImage_Click(object sender, RoutedEventArgs e)
+        {
+            A.RemoveImage((BitmapImage)imgDynamic.Source);
             imgDynamic.Source = A.Gallery.Prev();
         }
     }

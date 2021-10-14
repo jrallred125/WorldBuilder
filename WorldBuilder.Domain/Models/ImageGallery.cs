@@ -9,12 +9,17 @@ namespace WorldBuilder.Domain.Models
 {
     public class ImageGallery : DBclass
     {
+        /// <summary>
+        /// A list of images that have been saved.
+        /// </summary>
         public List<BitmapImage> Gallery { get; set; }
-        public int Index;
+        /// <summary>
+        /// The Index of the current image that is being viewed. 
+        /// </summary>
+        private int Index;
 
         public ImageGallery()
         {
-
             Gallery = new List<BitmapImage>();
         }
         /// <summary>
@@ -43,10 +48,18 @@ namespace WorldBuilder.Domain.Models
         /// <returns>The image at the changed index</returns>
         public BitmapImage Prev()
         {
-            Index--;
-            if (Index < 0)
+            if (Gallery.Count == 0)
+            {
+                Index = 0;
+                return null;
+            }
+            if (--Index < 0)
             {
                 Index = Gallery.Count - 1;
+            }
+            if (Gallery.Count == 0)
+            {
+                return null;
             }
             return Gallery[Index];
         }
@@ -56,7 +69,26 @@ namespace WorldBuilder.Domain.Models
         /// <returns>The image at the changed index</returns>
         public BitmapImage Next()
         {
+            if (Gallery.Count == 0)
+            {
+                Index = 0;
+                return null;
+            }
             Index = ++Index % Gallery.Count;
+            
+            return Gallery[Index];
+        }
+        /// <summary>
+        /// This will return the image at the current index.
+        /// </summary>
+        /// <returns>The image at the current index value.</returns>
+        public BitmapImage Current()
+        {
+            if (Gallery.Count == 0)
+            {
+                Index = 0;
+                return null;
+            }
             return Gallery[Index];
         }
 
