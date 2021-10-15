@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBuilder.Domain", "Worl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBuilder.WPF", "WorldBuilder.WPF\WorldBuilder.WPF.csproj", "{C6B96761-E569-415D-9509-FAF72C1DC890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBuilder.Tests", "WorldBuilder.Tests\WorldBuilder.Tests.csproj", "{FE4036CB-591E-470E-88C1-BE133B82577F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBuilder.Tests", "WorldBuilder.Tests\WorldBuilder.Tests.csproj", "{FE4036CB-591E-470E-88C1-BE133B82577F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBuilder.EntityFramework", "WorldBuilder.EntityFramework\WorldBuilder.EntityFramework.csproj", "{2D3B85E5-881A-4157-9AC3-36ADE7FDFE25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{FE4036CB-591E-470E-88C1-BE133B82577F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE4036CB-591E-470E-88C1-BE133B82577F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE4036CB-591E-470E-88C1-BE133B82577F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3B85E5-881A-4157-9AC3-36ADE7FDFE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3B85E5-881A-4157-9AC3-36ADE7FDFE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3B85E5-881A-4157-9AC3-36ADE7FDFE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3B85E5-881A-4157-9AC3-36ADE7FDFE25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

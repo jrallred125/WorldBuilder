@@ -18,8 +18,4 @@
     <ProjectReference Include="..\WorldBuilder.WPF\WorldBuilder.WPF.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
-
 </Project>

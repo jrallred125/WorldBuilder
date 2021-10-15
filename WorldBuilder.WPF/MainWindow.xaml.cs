@@ -22,45 +22,22 @@ namespace WorldBuilder.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        Character A;
         public MainWindow()
         {
             InitializeComponent();
-
-            A = new Character("Damaia Vanan", "Witchy.", "Pinked skinned, Auburn hair.");
         }
         private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 Uri fileUri = new Uri(openFileDialog.FileName);
                 BitmapImage x = new BitmapImage(fileUri);
-                imgDynamic.Source = x;
-                A.AddImage(x);
-
+                x.CacheOption = BitmapCacheOption.OnDemand;
+                x.CreateOptions = BitmapCreateOptions.DelayCreation;
+                //imgDynamic.Source = x;
             }
-        }
-        private void BtnLoadFromResource_Click(object sender, RoutedEventArgs e)
-        {
-            imgDynamic.Source = A.Gallery.Current();
-        }
-
-        private void BtnNextImage_Click(object sender, RoutedEventArgs e)
-        {
-            imgDynamic.Source = A.Gallery.Next();
-        }
-
-        private void BtnPrevImage_Click(object sender, RoutedEventArgs e)
-        {
-           
-            imgDynamic.Source = A.Gallery.Prev();
-        }
-
-        private void BtnRemoveImage_Click(object sender, RoutedEventArgs e)
-        {
-            A.RemoveImage((BitmapImage)imgDynamic.Source);
-            imgDynamic.Source = A.Gallery.Prev();
         }
     }
 }

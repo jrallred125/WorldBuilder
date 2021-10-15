@@ -23,7 +23,7 @@ namespace WorldBuilder.Domain.Models
         /// <summary>
         /// A list of the titles the character may have. 
         /// </summary>
-        public List<string> Titles { get; set; }
+        public List<string> Titles { get; set; } = new List<string>();
         /// <summary>
         /// The age of the character in years.
         /// </summary>
@@ -55,11 +55,11 @@ namespace WorldBuilder.Domain.Models
         /// <summary>
         /// A list of whom the character knows. 
         /// </summary>
-        public List<Character> Contacts { get; set; }
+        public List<Character> Contacts { get; set; } = new List<Character>();
         /// <summary>
         /// This is a gallery of images for a character. 
         /// </summary>
-        public ImageGallery Gallery { get; set; }
+        public List<string> Gallery { get; set; } = new List<string>();
         /// <summary>
         /// The basic constructor for the Character class. 
         /// </summary>
@@ -71,9 +71,6 @@ namespace WorldBuilder.Domain.Models
             Name = name;
             Personality = personality;
             Apparance = apparance;
-            Titles = new List<string>();
-            Contacts = new List<Character>();
-            Gallery = new ImageGallery();
         }
 
         /// <summary>
@@ -131,19 +128,23 @@ namespace WorldBuilder.Domain.Models
         /// <summary>
         /// This will add an image to the character's image gallery. 
         /// </summary>
-        /// <param name="image">The image to be added.</param>
-        public void AddImage(BitmapImage image)
+        /// <param name="fileName">The image to be added.</param>
+        public void AddImage(string fileName)
         {
-            Gallery.AddImage(image);
+            if (!Gallery.Contains(fileName))
+            {
+                Gallery.Add(fileName);
+            }
+            
         }
 
         /// <summary>
         /// This will remove an image from the character's gallery.
         /// </summary>
-        /// <param name="image">The image to be removed.</param>
-        public void RemoveImage(BitmapImage image)
+        /// <param name="fileName">The image to be removed.</param>
+        public void RemoveImage(string fileName)
         {
-            Gallery.RemoveImage(image);
+            Gallery.Remove(fileName);
         }
     }
 }

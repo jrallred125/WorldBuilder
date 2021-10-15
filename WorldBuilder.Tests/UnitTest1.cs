@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Windows.Media.Imaging;
 using WorldBuilder.Domain.Models;
+using System.IO;
 
 namespace WorldBuilder.Tests
 {
@@ -36,30 +37,7 @@ namespace WorldBuilder.Tests
             A.AddTitle("");
             Assert.AreEqual(A.Titles.Count, 0);
             A.AddTitle("   ");
-            Assert.AreEqual(A.Titles.Count, 0);
-            A.AddImage(null);
-            Assert.AreEqual(A.Gallery.Gallery.Count, 0);
-            
-        }
-        [TestMethod]
-        public void ImageGalleyClassTest()
-        {
-            ImageGallery A = new ImageGallery();
-            Uri resourceUri = new Uri("/Images/hidden_horde.jpg", UriKind.Relative);
-            BitmapImage testImage = new BitmapImage(resourceUri);
-            A.AddImage(testImage);
-            Assert.AreEqual(A.Gallery.Count, 1);
-            Assert.AreEqual(A.Current(), testImage);
-            Assert.AreEqual(A.Next(), testImage);
-            Assert.AreEqual(A.Prev(), testImage);
-            A.AddImage(testImage);
-            Assert.AreEqual(A.Gallery.Count, 1);
-            A.RemoveImage(testImage);
-            Assert.AreEqual(A.Gallery.Count, 0);
-            Assert.IsNull(A.Current());
-            Assert.IsNull(A.Next());
-            Assert.IsNull(A.Prev());
-            
+            Assert.AreEqual(A.Titles.Count, 0);            
         }
     }
 }

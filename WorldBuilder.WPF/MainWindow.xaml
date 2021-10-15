@@ -3,11 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WorldBuilder.WPF"
+        xmlns:local="clr-namespace:WorldBuilder.WPF" xmlns:views="clr-namespace:WorldBuilder.WPF.Views"
         mc:Ignorable="d"
+        
         Title="MainWindow" Height="500" Width="800">
     <Grid>
-        <StackPanel>
+        <views:CharacterView/>
+        <!--<StackPanel>
             <WrapPanel Margin="10" HorizontalAlignment="Center">
                 <Button Name="btnAddToGallery" Margin="0,0,20,0" Click="BtnLoadFromFile_Click">Add to Gallery</Button>
                 <Button Name="btnLoadCurrentImage" Click="BtnLoadFromResource_Click">Load Current Index</Button>
@@ -15,11 +17,6 @@
             <Viewbox Height="350" Width="700">
                 <Image Name="imgDynamic" Margin="1"  />
             </Viewbox>
-            <WrapPanel Margin="10" HorizontalAlignment="Center">
-                <Button Name="btnPrevious" Margin="0,0,20,0" Click="BtnPrevImage_Click">Prev</Button>
-                <Button Name="btnRemove" Margin="0,0,20,0" Click="BtnRemoveImage_Click">Remove</Button>
-                <Button Name="btnNext" Margin="0,0,20,0" Click="BtnNextImage_Click">Next</Button>
-            </WrapPanel>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Window>
