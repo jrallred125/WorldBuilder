@@ -11,8 +11,4 @@
     <ProjectReference Include="..\WorldBuilder.Domain\WorldBuilder.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>

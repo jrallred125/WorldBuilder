@@ -14,10 +14,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -26,17 +26,27 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" FontSize="24"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="Damaia Auburn Vanan" FontSize="24" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Age:" FontSize="24"/>
+            <WrapPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="center">
+                <TextBlock  Text="Damaia Auburn Vanan" FontSize="24" TextAlignment="Center" />
+            </WrapPanel>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Age: " FontSize="24" />
             <TextBlock Grid.Row="1" Grid.Column="1" Text="18" FontSize="24" />
-            
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="Race: " FontSize="24"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="Tiefling" FontSize="24"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Height: " FontSize="24" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="5 ft 4 in" FontSize="24" />
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Weight: " FontSize="24" Margin="5 0 0 0"/>
+            <TextBlock Grid.Row="2" Grid.Column="3" Text="104 lbs" FontSize="24"/>
         </Grid>
         <Viewbox Grid.RowSpan="2" Grid.Column="2">
-            <Image Name="ImageCharacter" Margin="1" Source="/Images/Auburn_front_green_eyes.png"/>
+            <Image Name="ImageCharacter" Margin="1"/>
         </Viewbox>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Apparence" FontSize="24"/>
         
+
     </Grid>
 </UserControl>

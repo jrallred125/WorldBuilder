@@ -26,7 +26,7 @@ namespace WorldBuilder.WPF
         {
             InitializeComponent();
         }
-        private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
+       /* private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
@@ -38,6 +38,6 @@ namespace WorldBuilder.WPF
                 x.CreateOptions = BitmapCreateOptions.DelayCreation;
                 //imgDynamic.Source = x;
             }
-        }
+        }*/
     }
 }
