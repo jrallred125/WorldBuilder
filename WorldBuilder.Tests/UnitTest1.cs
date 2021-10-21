@@ -12,8 +12,16 @@ namespace WorldBuilder.Tests
         [TestMethod]
         public void CharacterClassTests()
         {
-            Character A = new Character("Bobbie", "Fun loving kid.", "Has a head shaped like a football.");
-            Character B = new Character("Mommy", "Stern but loving.", "Tall and slender.");
+            Character A = new Character();
+            A.Name = "Bobbie";
+            A.Personality = "Fun loving kid.";
+            A.Apparance = "Has a head shaped like a football.";
+
+            Character B = new Character();
+            B.Name = "Mommy";
+            B.Personality = "Stern but loving.";
+            B.Apparance = "Tall and slender.";
+
             A.AddContact(B);
             Assert.AreEqual(B.Contacts.Count, 0);
             Assert.AreEqual(A.Contacts.Count, 1);
@@ -37,7 +45,9 @@ namespace WorldBuilder.Tests
             A.AddTitle("");
             Assert.AreEqual(A.Titles.Count, 0);
             A.AddTitle("   ");
-            Assert.AreEqual(A.Titles.Count, 0);            
+            Assert.AreEqual(A.Titles.Count, 0);   
+            
+
         }
     }
 }

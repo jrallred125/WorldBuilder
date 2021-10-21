@@ -60,18 +60,6 @@ namespace WorldBuilder.Domain.Models
         /// This is a gallery of images for a character. 
         /// </summary>
         public List<string> Gallery { get; set; } = new List<string>();
-        /// <summary>
-        /// The basic constructor for the Character class. 
-        /// </summary>
-        /// <param name="name">The name for the character.</param>
-        /// <param name="personality">The Personality for the character.</param>
-        /// <param name="apparance">The apparance of the character.</param>
-        public Character(string name, string personality, string apparance)
-        {
-            Name = name;
-            Personality = personality;
-            Apparance = apparance;
-        }
 
         /// <summary>
         /// This will add a title to a list of titles the character has been given.
@@ -131,7 +119,7 @@ namespace WorldBuilder.Domain.Models
         /// <param name="fileName">The image to be added.</param>
         public void AddImage(string fileName)
         {
-            if (!Gallery.Contains(fileName))
+            if (!Gallery.Contains(fileName) && !String.IsNullOrWhiteSpace(fileName))
             {
                 Gallery.Add(fileName);
             }
