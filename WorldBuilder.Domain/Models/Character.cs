@@ -13,17 +13,9 @@ namespace WorldBuilder.Domain.Models
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// The Character's personality. 
+        /// The race that the character is.
         /// </summary>
-        public string Personality { get; set; }
-        /// <summary>
-        /// The way the character looks and how they dress. 
-        /// </summary>
-        public string Apparance { get; set; }
-        /// <summary>
-        /// A list of the titles the character may have. 
-        /// </summary>
-        public List<string> Titles { get; set; } = new List<string>();
+        public string Race { get; set; }
         /// <summary>
         /// The age of the character in years.
         /// </summary>
@@ -37,9 +29,17 @@ namespace WorldBuilder.Domain.Models
         /// </summary>
         public string Weight { get; set; }
         /// <summary>
-        /// The race that the character is.
+        /// A list of the titles the character may have. 
         /// </summary>
-        public string Race { get; set; }
+        public List<string> Titles { get; set; } = new List<string>();
+        /// <summary>
+        /// The way the character looks and how they dress. 
+        /// </summary>
+        public string Apparance { get; set; }
+        /// <summary>
+        /// The Character's personality. 
+        /// </summary>
+        public string Personality { get; set; }
         /// <summary>
         /// What the character likes. 
         /// </summary>
@@ -61,6 +61,10 @@ namespace WorldBuilder.Domain.Models
         /// </summary>
         public List<string> Gallery { get; set; } = new List<string>();
 
+        private int profileImageIndex = -1;
+
+        private int mainTitleIndex = -1;
+
         /// <summary>
         /// This will add a title to a list of titles the character has been given.
         /// </summary>
@@ -79,6 +83,10 @@ namespace WorldBuilder.Domain.Models
         /// <param name="title">The title to be removed.</param>
         public void RemoveTitle(string title)
         {
+            if (mainTitleIndex == Titles.IndexOf(title))
+            {
+                profileImageIndex = -1;
+            }
             Titles.Remove(title);
         }
 
@@ -123,7 +131,6 @@ namespace WorldBuilder.Domain.Models
             {
                 Gallery.Add(fileName);
             }
-            
         }
 
         /// <summary>
@@ -132,7 +139,65 @@ namespace WorldBuilder.Domain.Models
         /// <param name="fileName">The image to be removed.</param>
         public void RemoveImage(string fileName)
         {
+            if (profileImageIndex == Gallery.IndexOf(fileName))
+            {
+                profileImageIndex = -1;
+            }
             Gallery.Remove(fileName);
+        }
+
+        public string GetTitles()
+        {
+            string titles = "";
+            foreach (var item in Titles)
+            {
+                titles += $"{item},";
+            }
+            return titles.TrimEnd(',');
+        }
+
+        public void SetProfileImage(string fileName)
+        {
+            profileImageIndex = Gallery.IndexOf(fileName);
+        }
+
+        public string GetPofileImage()
+        {
+            if (profileImageIndex >= 0)
+            {
+                return Gallery[profileImageIndex];
+            }
+            return null;
+        }
+
+        public void SetMainTitle(string title)
+        {
+            mainTitleIndex = Titles.IndexOf(title);
+        }
+
+        public string GetMainTitle()
+        {
+            string title = "";
+            if (mainTitleIndex >= 0)
+            {
+                title = Titles[mainTitleIndex];
+            }
+            return title;
+        }
+
+        public string GetContacts()
+        {
+            string contacts = "";
+            foreach (var item in Contacts)
+            {
+                contacts += $"{item},";
+            }
+            return contacts.TrimEnd(',');
+        }
+
+        public override string ToString()
+        {
+            return $"{GetMainTitle()} {Name}".Trim();
         }
     }
 }
