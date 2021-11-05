@@ -30,6 +30,7 @@
                 <Grid>
                     <StackPanel>
                         <TextBlock Text="World Leader&#x0a;in global finance"
+                                   TextWrapping="Wrap"
                                    Foreground="White"
                                    FontSize="28"
                                    Margin="20,10,10,0"/>
