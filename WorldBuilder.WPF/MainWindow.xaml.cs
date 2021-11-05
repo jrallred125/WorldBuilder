@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorldBuilder.Domain.Models;
+using WorldBuilder.WPF.ViewModels;
 
 namespace WorldBuilder.WPF
 {
@@ -25,6 +26,18 @@ namespace WorldBuilder.WPF
         public MainWindow()
         {
             InitializeComponent();
+            Character A = new();
+            A.Name = "Damaia Auburn Vanan";
+            A.Age = 18;
+            A.Race = "Tiefling";
+            A.Height = "5 ft 4 in";
+            A.Apparance = "She has red hair with purple streaks, green eyes and pink skin. She wears emerald earings and has one of her horns peirced.";
+            A.AddTitle("Cap");
+            A.AddTitle("Wicked Wine");
+
+            A.AddImage("/Views/Auburn_front_green_eyes.png");
+            A.SetProfileImage("/Views/Auburn_front_green_eyes.png");
+            CharacterViewModel cm = new CharacterViewModel(A);
         }
        /* private void BtnLoadFromFile_Click(object sender, RoutedEventArgs e)
         {

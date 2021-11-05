@@ -3,42 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WorldBuilder.WPF.Views"
+             xmlns:local="clr-namespace:WorldBuilder.WPF.Views" 
+             xmlns:viewmodels="clr-namespace:WorldBuilder.WPF.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:CharacterViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
 
-    <WrapPanel Margin="5,5,5,5">
+    <StackPanel>
         <WrapPanel Margin="5,5,5,5">
-            <StackPanel>
-                <Viewbox Width="200" Height="250" Margin="5,5,5,5">
-                    <Image Source="/Views/Auburn_front_green_eyes.png"/>
-                </Viewbox>
-                <Button Content="View Gallery" />
-            </StackPanel>
-            <StackPanel>
-                <WrapPanel>
-                    <TextBlock Text="Damaia Auburn Vanan" FontSize="24" TextAlignment="Center" Margin="5,5,5,5"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Race:" Margin="5,5,5,5"/>
-                    <TextBlock Text="Tiefling" Margin="5,5,5,5"/>
-                    <TextBlock Text="Age:" Margin="5,5,5,5"/>
-                    <TextBlock Text="18" Margin="5,5,5,5"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <TextBlock Text="Weight:" Margin="5,5,5,5"/>
-                    <TextBlock Text="l04 bbs" Margin="5,5,5,5"/>
-                    <TextBlock Text="Height:" Margin="5,5,5,5"/>
-                    <TextBlock Text="5 ft 4 in" Margin="5,5,5,5"/>
-                </WrapPanel>
-                <TextBlock Text="Titles:" TextWrapping="Wrap" Margin="5,5,5,5"/>
-                <TextBlock Text="Apparance:" TextWrapping="Wrap" Margin="5,5,5,5"/>
-                <TextBlock Text="Personality:" TextWrapping="Wrap" Margin="5,5,5,5"/>
-                
-
-            </StackPanel>
+            <WrapPanel Margin="5,5,5,5">
+                <StackPanel Width="auto">
+                    <Viewbox Width="200" Height="250" Margin="5,5,5,5">
+                        <Image Width="auto" Source="{Binding ProfilePic}"/>
+                    </Viewbox>
+                    <Button Content="View Gallery" />
+                </StackPanel>
+                <StackPanel Width="auto" Margin="5,5,5,5">
+                    <TextBlock Width="auto" Text="{Binding Name}" FontSize="24" Margin="5,5,5,5"/>
+                    <WrapPanel Margin="5,5,5,5">
+                        <TextBlock Width="auto" Text="{Binding Race}" Margin="5,5,5,5"/>
+                        <TextBlock Width="auto" Text="{Binding Age}" Margin="5,5,5,5"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="5,5,5,5">
+                        <TextBlock Width="auto" Text="{Binding Weight}" Margin="5,5,5,5"/>
+                        <TextBlock Width="auto" Text="{Binding Height}" Margin="5,5,5,5"/>
+                    </WrapPanel>
+                    <TextBlock Width="auto" Text="{Binding Titles}" TextWrapping="Wrap" Margin="5,5,5,5"/>
+                    <TextBlock Width="auto" Text="{Binding Apparance}" TextWrapping="Wrap" Margin="5,5,5,5"/>
+                    <TextBlock Width="auto" Text="{Binding Personality}" TextWrapping="Wrap" Margin="5,5,5,5"/>
+                </StackPanel>
+            </WrapPanel>
         </WrapPanel>
-    </WrapPanel>
+        <TextBlock Text="{Binding Backstory}" TextWrapping="Wrap" Margin="5,5,5,5"/>
+    </StackPanel>
     <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
