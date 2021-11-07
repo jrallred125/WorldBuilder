@@ -21,6 +21,9 @@
             <DataTemplate DataType="{x:Type viewModel:CharactersViewModel}">
                 <view:CharactersView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CharacterDetailsViewModel}">
+                <view:CharacterDetailsView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

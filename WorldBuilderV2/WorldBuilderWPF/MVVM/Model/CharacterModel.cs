@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace WorldBuilderWPF.MVVM.Model
 {
-    public class Character
+    [Serializable]
+    public class CharacterModel
     {
         /// <summary>
         /// The name of the Character.

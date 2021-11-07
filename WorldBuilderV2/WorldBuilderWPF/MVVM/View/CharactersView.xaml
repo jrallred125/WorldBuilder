@@ -9,7 +9,7 @@
              Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="275"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
@@ -34,11 +34,27 @@
                       Background="Transparent"
                       Foreground="Gray"
                       BorderThickness="2"
-                      ItemContainerStyle="{StaticResource CharacterCard}"/>
+                      ItemContainerStyle="{StaticResource CharacterCard}"
+                      Margin="5,5"/>
 
             <TextBox Grid.Row="2"
                      Text="Search"
                      Style="{StaticResource SearchBox}"/>
+
+         
+
+            <Button Grid.Row="3"
+                    Margin="5,5"
+                    Content="New Character"
+                    Background="#333355"
+                    Foreground="White"
+                    FontWeight="Medium"/>
+            
+            
         </Grid>
+        
+        <ContentControl Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
     </Grid>
 </UserControl>

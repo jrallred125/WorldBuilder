@@ -4,11 +4,11 @@
 
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#111111"/>
+                <Setter Property="Background" Value="#111177"/>
             </Trigger>
         </Style.Triggers>
 
-        <Setter Property="Background" Value="#333333"/>
+        <Setter Property="Background" Value="#333366"/>
 
         <Setter Property="Template">
             <Setter.Value>
