@@ -11,9 +11,21 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 {
     public class CharactersViewModel : ObservableObject
     {
-        public ObservableCollection<CharacterModel> Characters { get; set; }
+        private ObservableCollection<CharacterModel> _characters;
 
-       public RelayCommand SearchCommand { get; set; }
+        public ObservableCollection<CharacterModel> Characters
+        {
+            get { return _characters; }
+            set { 
+                _characters = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public RelayCommand SearchCommand { get; set; }
+
+        public RelayCommand NewCharacterCommand { get; set; }
 
 
         private CharacterModel _selectedCharacter;
@@ -48,7 +60,10 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             {
                 _selectedCharacter = value;
                 OnPropertyChanged();
-                OpenCharacterDetails();
+                if (_selectedCharacter != null)
+                {
+                    OpenCharacterDetails();
+                }
             }
         }
 
@@ -59,46 +74,19 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public CharactersViewModel()
         {
-            Characters = new ObservableCollection<CharacterModel>();
+            Characters = DataController.Instance.Characters;
 
             SearchCommand = new RelayCommand(o =>
             {
-                // Todo 
+                Characters = DataController.Instance.SearchCharacters(SearchProp);
             });
 
-
-            Characters.Add(new CharacterModel
+            NewCharacterCommand = new RelayCommand(o =>
             {
-                Name = "Damaia Auburn Vanan",
-                Race = "Tiefling",
-                Age = 18,
-                Height = "5 ft 4 in",
-                Weight = "104 lbs",
-                Gender = "Female",
-                Apparance = "Pink skin with green eyes. Auburn hair with purple streaks.",
-                Personality = "Bitchy, but nice.",
-                Likes = "Lewd jokes.",
-                Dislikes = "Cats",
-                Backstory = "Her parents divorced at when she was 6 years old. Her mother made her work in the shop all day. She left to live with her father at the age of 15.",
-                ProfileImage = "https://www.worldanvil.com/uploads/images/2a33e079cd1aac298104a430f49d0154.png"
-
+                CharacterModel character = new CharacterModel();
+                CurrentView = new EditCharacterViewModel(character, this, true);
             });
 
-            Characters.Add(new CharacterModel
-            {
-                Name = "Resai Jewel",
-                Race = "1/2 human 1/2 Tabaxi",
-                Age = 18,
-                Height = "6 ft 3 in",
-                Weight = "124 lbs",
-                Gender = "Female",
-                Apparance = "Mostly human. She had purple hair that fades to blue at the ends. She has cat ears and a tail that are purple. She also has green cat eyes.",
-                Personality = "Quite, but nice.",
-                Likes = "Fish.",
-                Dislikes = "Dogs.",
-                Backstory = "None yet.",
-                ProfileImage = "https://www.worldanvil.com/uploads/images/03c70ad3f35460df1f08bb2c5f00d784.png"
-            });
         }
     }
 }

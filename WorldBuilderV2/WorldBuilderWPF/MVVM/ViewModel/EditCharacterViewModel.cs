@@ -1,20 +1,41 @@
-﻿using WorldBuilderWPF.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class CharacterDetailsViewModel : ObservableObject
+    public class EditCharacterViewModel : ObservableObject
     {
-        public RelayCommand EditCharacterCommand { get; set; }
+        public RelayCommand SaveCommand { get; set; }
 
-        public RelayCommand DeleteCharacterCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
 
 
+        private CharacterModel _character;
 
-        public CharacterDetailsViewModel(CharacterModel character, CharactersViewModel charactersViewModel)
+        public CharacterModel SelectedCharacter
+        {
+            get { return _character; }
+            set { 
+                _character = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool isNewCharacter { get; set; }
+
+        public CharactersViewModel CharactersVM { get; set; }
+
+        public EditCharacterViewModel(CharacterModel character, CharactersViewModel charactersVm, bool isNew)
         {
             SelectedCharacter = character;
-            CharactersVM = charactersViewModel;
+            CharactersVM = charactersVm;
+            isNewCharacter = isNew;
+
             if (SelectedCharacter != null)
             {
                 Name = SelectedCharacter.Name;
@@ -31,40 +52,40 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 Apparance = SelectedCharacter.Apparance;
             }
 
-            
-
-            DeleteCharacterCommand = new RelayCommand(o =>
+            SaveCommand = new RelayCommand(o =>
             {
-                CharactersVM.CurrentView = null;
-                //DataController.Instance.RemoveCharacter(SelectedCharacter);
-                CharactersVM.Characters.Remove(SelectedCharacter);
-                SelectedCharacter = null;
+                SelectedCharacter.Name = Name;
+                SelectedCharacter.Age = Age;
+                SelectedCharacter.Apparance = Apparance;
+                SelectedCharacter.Backstory = Backstory;
+                SelectedCharacter.Height = Height;
+                SelectedCharacter.Personality = Personality;
+                SelectedCharacter.ProfileImage = ProfileImage;
+                SelectedCharacter.Race = Race;
+                SelectedCharacter.Likes = Likes;
+                SelectedCharacter.Dislikes = Dislikes;
+                SelectedCharacter.Weight = Weight;
+                SelectedCharacter.Gender = Gender;
+                if (isNewCharacter)
+                {
+                    DataController.Instance.AddCharacter(SelectedCharacter);
+                }
+                CharactersVM.CurrentView = new CharacterDetailsViewModel(SelectedCharacter, CharactersVM);
             });
 
-            EditCharacterCommand = new RelayCommand(o =>
+            CancelCommand = new RelayCommand(o =>
             {
-                CharactersVM.CurrentView = new EditCharacterViewModel(SelectedCharacter, CharactersVM, false);
+                if (isNewCharacter)
+                {
+                    CharactersVM.CurrentView = null;
+                    SelectedCharacter = null;
+                }
+                else {
+                    CharactersVM.CurrentView = new CharacterDetailsViewModel(SelectedCharacter, CharactersVM);
+                }
             });
 
         }
-
-
-
-        public CharactersViewModel CharactersVM{ get; set; }
-
-
-        private CharacterModel _selectedCharacter;      
-
-        public CharacterModel SelectedCharacter
-        {
-            get { return _selectedCharacter; }
-            set
-            {
-                _selectedCharacter = value;
-                OnPropertyChanged();
-            }
-        }
-
         private string _name;
 
         public string Name
@@ -118,7 +139,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public string Height
         {
             get { return _height; }
-            set { 
+            set
+            {
                 _height = value;
                 OnPropertyChanged();
             }
@@ -129,7 +151,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public string Gender
         {
             get { return _gender; }
-            set { 
+            set
+            {
                 _gender = value;
                 OnPropertyChanged();
             }
@@ -140,7 +163,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public string Race
         {
             get { return _race; }
-            set { 
+            set
+            {
                 _race = value;
                 OnPropertyChanged();
             }

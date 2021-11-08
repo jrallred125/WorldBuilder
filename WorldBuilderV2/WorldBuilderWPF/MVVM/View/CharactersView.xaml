@@ -42,13 +42,14 @@
                      Style="{StaticResource SearchBox}"/>
 
          
-
+            
             <Button Grid.Row="3"
                     Margin="5,5"
                     Content="New Character"
                     Background="#333355"
                     Foreground="White"
-                    FontWeight="Medium"/>
+                    FontWeight="Medium"
+                    Command="{Binding NewCharacterCommand}"/>
             
             
         </Grid>

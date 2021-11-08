@@ -21,7 +21,7 @@
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="35"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Border Grid.ColumnSpan="2"
@@ -70,9 +70,10 @@
             </Border>
 
             <StackPanel Grid.Row="1"
-                        Orientation="Horizontal">
+                        Orientation="Horizontal"
+                        Height="35">
                 <RadioButton Content="Home"
-                             Height="50"
+                             Height="35"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
@@ -80,23 +81,32 @@
                              Command="{Binding HomeViewCommand}"/>
 
                 <RadioButton Content="Characters"
-                             Height="50"
+                             Height="35"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding CharactersViewCommand}"/>
 
                 <RadioButton Content="Locations"
-                             Height="50"
+                             Height="35"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding LocationsViewCommand}"/>
 
                 <RadioButton Content="Lore"
-                             Height="50"
+                             Height="35"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding LoreViewCommand}"/>
+
+                <RadioButton Content="Items"
+                             Height="35"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding ItemsViewCommand}"/>
             </StackPanel>
 
             <ContentControl Grid.Row="2"

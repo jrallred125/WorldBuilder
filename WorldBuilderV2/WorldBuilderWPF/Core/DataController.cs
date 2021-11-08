@@ -48,17 +48,31 @@ namespace WorldBuilderWPF.Core
         }
 
 
-        public ObservableCollection<CharacterModel> Search(string value)
+        public ObservableCollection<CharacterModel> SearchCharacters(string value)
         {
-            var found = from Character in Characters
-                        where Character.Name.StartsWith(value) || Character.Race.Contains(value)
-                        select Character;
-            return (ObservableCollection<CharacterModel>)found;
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return Characters;
+            }
+            ObservableCollection<CharacterModel> found = new ObservableCollection<CharacterModel>();
+            foreach (var character in Characters)
+            {
+                if (character.Name.ToLower().Contains(value.ToLower())|| character.Race.ToLower().Contains(value.ToLower())|| character.Gender.ToLower().Contains(value.ToLower()))
+                {
+                    found.Add(character);
+                }
+            }
+            return found;
         }
 
         public void AddCharacter(CharacterModel character)
         {
             Characters.Add(character);
+        }
+
+        public void RemoveCharacter(CharacterModel character)
+        {
+            Characters.Remove(character);
         }
         
 

@@ -20,7 +20,7 @@ namespace WorldBuilderWPF.MVVM.Model
         /// <summary>
         /// The age of the character in years.
         /// </summary>
-        public int Age { get; set; }
+        public string Age { get; set; }
         /// <summary>
         /// The weight of the character in lbs.
         /// </summary>

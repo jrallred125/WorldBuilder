@@ -21,17 +21,17 @@
                                     Margin="10,0,0,0">
                             <Ellipse Width="30" Height="30">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding ProfileImage}"/>
+                                    <ImageBrush ImageSource="{Binding ProfileImage,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <StackPanel>
-                                <Label Content="{Binding Name}"
+                                <Label Content="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Foreground="White"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Race}"
+                                    <Label Content="{Binding Race,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Foreground="Gray"
                                        FontSize="10"/>
-                                    <Label Content="{Binding Gender}"
+                                    <Label Content="{Binding Gender,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Foreground="Gray"
                                        FontSize="10"/>
                                 </StackPanel>

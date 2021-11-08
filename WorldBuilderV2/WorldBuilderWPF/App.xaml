@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
                 <ResourceDictionary Source="Theme/CharacterCard.xaml" />
                 <ResourceDictionary Source="Theme/SearchBoxTheme.xaml" />
+                <ResourceDictionary Source="Theme/ScrollBar.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
@@ -23,6 +24,22 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:CharacterDetailsViewModel}">
                 <view:CharacterDetailsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:EditCharacterViewModel}">
+                <view:EditCharacterView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:ItemsViewModel}">
+                <view:ItemsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LocationsViewModel}">
+                <view:LocationsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LoreViewModel}">
+                <view:LoreView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

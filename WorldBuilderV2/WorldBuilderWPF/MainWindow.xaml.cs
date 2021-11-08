@@ -2,7 +2,7 @@
 using System.Windows;
 
 using System.Windows.Input;
-
+using WorldBuilderWPF.Core;
 
 namespace WorldBuilderWPF
 {
@@ -41,6 +41,7 @@ namespace WorldBuilderWPF
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+            DataController.Instance.OnExit();
             Application.Current.Shutdown();
         }
     }
