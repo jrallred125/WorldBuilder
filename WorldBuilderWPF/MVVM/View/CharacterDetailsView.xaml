@@ -1,0 +1,218 @@
+﻿<UserControl x:Class="WorldBuilderWPF.MVVM.View.CharacterDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WorldBuilderWPF.MVVM.View" 
+             xmlns:viewmodel="clr-namespace:WorldBuilderWPF.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CharacterDetailsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+
+    <Border CornerRadius="4"
+            Background="Transparent">
+        <Grid>
+            <FlowDocumentScrollViewer>
+                <FlowDocument>
+                    <Section>
+                        <Paragraph TextAlignment="Center">
+                            <Label Content="{Binding Name}"
+                                   Foreground="White"
+                                   FontWeight="Bold"
+                                   FontSize="32"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"/>
+                        </Paragraph>
+                        <Paragraph>
+                            <Floater Width="250" HorizontalAlignment="left" Margin="0,0,5,5">
+                                <BlockUIContainer>
+                                    <StackPanel>
+                                        <Image  Source="{Binding ProfileImage}"                                        
+                                                Width="250" Height="250"                                        
+                                                Margin="10"/>
+                                    </StackPanel>
+                                </BlockUIContainer>
+                            </Floater>
+                            <Floater>
+                                <BlockUIContainer>
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <WrapPanel>
+                                                <Label Content="Race:"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"/>
+                                                <TextBlock Text="{Binding Race}"
+                                                           Foreground="Gray"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Margin="1,0,0,0"
+                                                           TextWrapping="wrap"/>
+                                            </WrapPanel>
+                                            <WrapPanel>
+                                                <Label Content="Age:"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"/>
+                                                <TextBlock Text="{Binding Age}"
+                                                           Foreground="Gray"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Margin="1,0,0,0"
+                                                           TextWrapping="Wrap"/>
+                                            </WrapPanel>
+                                            <WrapPanel>
+                                                <Label Content="Weight:"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"/>
+                                                <TextBlock Text="{Binding Weight}"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"                               
+                                                       TextWrapping="Wrap"/>
+                                            </WrapPanel>
+                                            <WrapPanel>
+                                                <Label Content="Height:"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"/>
+                                                <TextBlock Text="{Binding Height}"
+                                                           Foreground="Gray"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Margin="1,0,0,0"                               
+                                                           TextWrapping="Wrap"/>
+                                            </WrapPanel>
+                                            <WrapPanel>
+                                                <Label Content="Gender:"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"/>
+                                                <TextBlock Text="{Binding Gender}"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"                               
+                                                       TextWrapping="Wrap"/>
+                                            </WrapPanel>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Profile Image:"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Margin="1,0,0,0"/>
+                                            <TextBlock Text="{Binding ProfileImage}"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       MaxHeight="250"
+                                                       ScrollViewer.CanContentScroll="True"
+                                                       Margin="1,0,0,0"                               
+                                                       TextWrapping="Wrap"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Personality:"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Margin="1,0,0,0"/>
+                                            <TextBlock Text="{Binding Personality}"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"                               
+                                                       TextWrapping="Wrap"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Apparance:"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Margin="1,0,0,0"/>
+                                            <TextBlock Text="{Binding Apparance}"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"                               
+                                                       TextWrapping="Wrap"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Likes:"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Margin="1,0,0,0"/>
+                                            <TextBlock Text="{Binding Likes}"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"                               
+                                                       TextWrapping="Wrap"/>
+                                        </WrapPanel>
+                                        <WrapPanel>
+                                            <Label Content="Dislikes:"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Margin="1,0,0,0"/>
+                                            <TextBlock Text="{Binding Dislikes}"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Margin="1,0,0,0"                               
+                                                       TextWrapping="Wrap"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </BlockUIContainer>
+                            </Floater>
+                        </Paragraph>
+                        <Paragraph>
+                            <StackPanel>
+                                <Label Content="Backstory:"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"
+                                       Margin="1,0,0,0"/>
+                                <TextBlock Text="{Binding Backstory}"
+                                           Foreground="Gray"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="1,0,0,0"                               
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Paragraph>
+                        <BlockUIContainer>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="5,5"
+                                        Content="Edit"
+                                        Background="#333355"
+                                        Foreground="White"
+                                        FontWeight="Medium"
+                                        FontSize="12"
+                                        Width="50"
+                                        Command="{Binding EditCharacterCommand}"/>
+
+                                <Button Margin="5,5"
+                                        Content="Delete"
+                                        Background="#333355"
+                                        Foreground="White"
+                                        FontWeight="Medium"
+                                        FontSize="12"
+                                        Width="50"
+                                        Command="{Binding DeleteCharacterCommand}"/>
+                            </StackPanel>
+                        </BlockUIContainer>
+                    </Section>
+                </FlowDocument>
+            </FlowDocumentScrollViewer>
+        </Grid>
+    </Border>
+</UserControl>

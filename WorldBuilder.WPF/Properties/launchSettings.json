@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "WorldBuilder.WPF": {
-      "commandName": "Project",
-      "remoteDebugEnabled": false
-    }
-  }
-}

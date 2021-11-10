@@ -1,0 +1,62 @@
+﻿<Application x:Class="WorldBuilderWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WorldBuilderWPF"
+             xmlns:viewModel="clr-namespace:WorldBuilderWPF.MVVM.ViewModel"
+             xmlns:view="clr-namespace:WorldBuilderWPF.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
+                <ResourceDictionary Source="Theme/SearchBoxTheme.xaml" />
+                <!-- Scroll bar -->
+                <ResourceDictionary Source="Theme/ScrollBar.xaml" />
+                <!-- Cards -->
+                <ResourceDictionary Source="Theme/CharacterCard.xaml" />
+                <ResourceDictionary Source="Theme/LoreCard.xaml" />
+                
+                
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Menu -->
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            <!-- Character related views and view models -->
+            <DataTemplate DataType="{x:Type viewModel:CharactersViewModel}">
+                <view:CharactersView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CharacterDetailsViewModel}">
+                <view:CharacterDetailsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:EditCharacterViewModel}">
+                <view:EditCharacterView/>
+            </DataTemplate>
+            <!-- Item related views and view models-->
+            <DataTemplate DataType="{x:Type viewModel:ItemsViewModel}">
+                <view:ItemsView/>
+            </DataTemplate>
+            
+            <!-- Location views and view models -->
+            <DataTemplate DataType="{x:Type viewModel:LocationsViewModel}">
+                <view:LocationsView/>
+            </DataTemplate>
+            <!-- Lore views and view models -->
+            <DataTemplate DataType="{x:Type viewModel:LoreViewModel}">
+                <view:LoreView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:EditLoreViewModel}">
+                <view:EditLoreView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LoreDetailsViewModel}">
+                <view:LoreDetailsView/>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
