@@ -1,0 +1,62 @@
+﻿<Window x:Class="WorldBuilderWPF.ImageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorldBuilderWPF"
+        mc:Ignorable="d"
+        Height="650" Width="1200"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        Background="#363636"
+        AllowsTransparency="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="35"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border Grid.ColumnSpan="2"
+                Background="#111122"
+                MouseDown="Border_MouseDown">
+
+            <Grid HorizontalAlignment="Stretch">
+                <Label Content="View Image"
+                       Foreground="White"
+                       FontWeight="Bold"/>
+
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Width="20"
+                            Height="20"
+                            Background="Transparent"
+                            Content="🗕"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="MinmizeButton_Click"/>
+
+                    <Button Width="20"
+                            Height="20"
+                            Background="Transparent"
+                            Content="🗖"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="MaximizeButton_Click"/>
+
+                    <Button Width="20"
+                            Height="20"
+                            Background="Transparent"
+                            Content="🗙"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="CloseWindowButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Image Grid.Row="2"
+               Source="{Binding Image}"/>
+    </Grid>
+</Window>

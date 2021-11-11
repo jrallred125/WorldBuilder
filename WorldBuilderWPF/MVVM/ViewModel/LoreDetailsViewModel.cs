@@ -14,6 +14,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public RelayCommand DeleteCommand { get; set; }
 
+        public RelayCommand ViewImageCommand { get; set; }
+
 
         private LoreModel _selectedLore;
 
@@ -54,6 +56,12 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 DataController.Instance.RemoveLore(SelectedLore);
                 SelectedLore = null;
 
+            });
+
+            ViewImageCommand = new RelayCommand(o =>
+            {
+                var imageWindow = new ImageWindow(Image);
+                imageWindow.Show();
             });
 
         }

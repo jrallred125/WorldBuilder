@@ -9,6 +9,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public RelayCommand DeleteCharacterCommand { get; set; }
 
+        public RelayCommand ViewImageCommand { get; set; }
 
 
         public CharacterDetailsViewModel(CharacterModel character, CharactersViewModel charactersViewModel)
@@ -43,6 +44,12 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             EditCharacterCommand = new RelayCommand(o =>
             {
                 CharactersVM.CurrentView = new EditCharacterViewModel(SelectedCharacter, CharactersVM, false);
+            });
+
+            ViewImageCommand = new RelayCommand(o => 
+            {
+                var imageWindow = new ImageWindow(ProfileImage);
+                imageWindow.Show();
             });
 
         }

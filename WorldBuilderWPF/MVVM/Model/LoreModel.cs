@@ -12,23 +12,23 @@ namespace WorldBuilderWPF.MVVM.Model
         /// <summary>
         /// The title of the lore.
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; set; } = "";
         /// <summary>
         /// The summary of the lore.
         /// </summary>
-        public string Summary { get; set; }
+        public string Summary { get; set; } = "";
         /// <summary>
         /// The inforamtion about the lore.
         /// </summary>
-        public string Information { get; set; }
+        public string Information { get; set; } = "";
         /// <summary>
         /// An image of the lore.
         /// </summary>
-        public string Image { get; set; }
+        public string Image { get; set; } = "";
         /// <summary>
         /// The type of lore it is.
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; set; } = "";
 
     }
 }

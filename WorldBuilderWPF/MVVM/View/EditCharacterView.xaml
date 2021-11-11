@@ -5,161 +5,98 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WorldBuilderWPF.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <FlowDocumentScrollViewer>
-            <FlowDocument>
-                <Section>
-                    <Paragraph TextAlignment="Center">
-                        <Label Content="{Binding Name}"
-                               Foreground="White"
-                               FontWeight="Bold"
-                               FontSize="32"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Margin="10,0,0,0"/>
-                    </Paragraph>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="325"/>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="{Binding Name}"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   FontSize="32"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="10,0,0,0"
+                   Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="275"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Image  Source="{Binding ProfileImage}"                                   
+                        Width="250" Height="250"                                        
+                        Margin="10"/>
+            </StackPanel>
+            <FlowDocumentScrollViewer Grid.Row="1"
+                                      Grid.Column="1">
+                <FlowDocument>
                     <Paragraph>
-                        <Floater Width="250" HorizontalAlignment="Left" Margin="0,0,5,5">
-                            <BlockUIContainer>
-                                <StackPanel>
-                                    <Image  Source="{Binding ProfileImage}"
-                                        Width="250" Height="250"
-                                        Margin="10"/>
-                                </StackPanel>
-                            </BlockUIContainer>
-                        </Floater>
-                        <Floater>
-                            <BlockUIContainer>
-                                <StackPanel>
-                                    <WrapPanel Margin="0,5">
-                                        <Label Content="Name:"
-                                               Foreground="White"                                                                                         
-                                               HorizontalAlignment="Center"                               
-                                               VerticalAlignment="Center"                               
-                                               Margin="1,0,0,0"/>
-                                        <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="250"
-                                                MinHeight="20">
-                                            <Grid>
-                                                <TextBox Text="{Binding Name}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"/>
-                                            </Grid>
-                                        </Border>
-                                    </WrapPanel>
-                                    <WrapPanel>
-                                        <WrapPanel Margin="0,5">
-                                            <Label Content="Race:"
+                        <StackPanel>
+                            <WrapPanel>
+                                <Label Content="Name:"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"     
+                                       VerticalAlignment="Center"                               
+                                       Margin="1,0,0,0"/>
+                                <Border CornerRadius="8"
+                                        Background="#3e4147"
+                                        MinWidth="250"
+                                        MinHeight="20">
+                                    <Grid>
+                                        <TextBox Text="{Binding Name}"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalAlignment="Stretch"
+                                                 Background="Transparent"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 Foreground="LightGray"
+                                                 CaretBrush="LightGray"/>
+                                    </Grid>
+                                </Border>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <WrapPanel Margin="0,5">
+                                    <Label Content="Race:"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="1,0,0,0"/>
+                                    <Border CornerRadius="8"
+                                            Background="#3e4147"
+                                            MinWidth="75"
+                                            MinHeight="20">
+                                        <Grid>
+                                            <TextBox Text="{Binding Race}"
+                                                     VerticalAlignment="Stretch"
+                                                     VerticalContentAlignment="Center"
+                                                     HorizontalAlignment="Stretch"
+                                                     Background="Transparent"
+                                                     TextWrapping="Wrap"
+                                                     BorderThickness="0"
+                                                     Foreground="LightGray"
+                                                     CaretBrush="LightGray"/>
+                                        </Grid>
+                                    </Border>
+                                </WrapPanel>
+                                <WrapPanel Margin="0,5">
+                                    <Label Content="Gender:"
                                                    Foreground="White"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    Margin="1,0,0,0"/>
-                                            <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="75"
-                                                MinHeight="20">
-                                                <Grid>
-                                                    <TextBox Text="{Binding Race}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"/>
-                                                </Grid>
-                                            </Border>
-                                        </WrapPanel>
-                                        <WrapPanel Margin="0,5">
-                                            <Label Content="Age:"
-                                                   Foreground="White"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Margin="1,0,0,0"/>
-                                            <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="75"
-                                                MinHeight="20">
-                                                <Grid>
-                                                    <TextBox Text="{Binding Age}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"/>
-                                                </Grid>
-                                            </Border>
-                                        </WrapPanel>
-                                        <WrapPanel Margin="0,5">
-                                            <Label Content="Weight:"
-                                                   Foreground="White"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Margin="1,0,0,0"/>
-                                            <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="75"
-                                                MinHeight="20">
-                                                <Grid>
-                                                    <TextBox Text="{Binding Weight}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"/>
-                                                </Grid>
-                                            </Border>
-                                        </WrapPanel>
-                                        <WrapPanel Margin="0,5">
-                                            <Label Content="Height:"
-                                                   Foreground="White"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Margin="1,0,0,0"/>
-                                            <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="75"
-                                                MinHeight="20">
-                                                <Grid>
-                                                    <TextBox Text="{Binding Height}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"/>
-                                                </Grid>
-                                            </Border>
-                                        </WrapPanel>
-                                        <WrapPanel Margin="0,5">
-                                            <Label Content="Gender:"
-                                                   Foreground="White"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Margin="1,0,0,0"/>
-                                            <Border CornerRadius="8"
+                                    <Border CornerRadius="8"
                                                 Background="#3e4147"
                                                 MinWidth="80"
                                                 MinHeight="20">
-                                                <Grid>
-                                                    <TextBox Text="{Binding Gender}"
+                                        <Grid>
+                                            <TextBox Text="{Binding Gender}"
                                                          VerticalAlignment="Stretch"
                                                          VerticalContentAlignment="Center"
                                                          HorizontalAlignment="Stretch"
@@ -168,184 +105,255 @@
                                                          BorderThickness="0"
                                                          Foreground="LightGray"
                                                          CaretBrush="LightGray"/>
-                                                </Grid>
-                                            </Border>
-                                        </WrapPanel>
-                                    </WrapPanel>
-                                    <WrapPanel Margin="0,5">
-                                        <Label Content="Profile Image:"
-                                               Foreground="White"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="1,0,0,0"/>
-                                        <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="250"
-                                                MinHeight="20"
-                                                MaxHeight="250">
-                                            <Grid>
-                                                <TextBox Text="{Binding ProfileImage}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         ScrollViewer.CanContentScroll="True"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"/>
-                                            </Grid>
-                                        </Border>
-                                    </WrapPanel>
-                                    <WrapPanel Margin="0,5">
-                                        <Label Content="Personality:"
-                                               Foreground="White"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="1,0,0,0"/>
-                                        <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="250"
-                                                MinHeight="20">
-                                            <Grid>
-                                                <TextBox Text="{Binding Personality}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"
-                                                         AcceptsReturn="True"/>
-                                            </Grid>
-                                        </Border>
-                                    </WrapPanel>
-                                    <WrapPanel Margin="0,5">
-                                        <Label Content="Apparance:"
-                                               Foreground="White"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="1,0,0,0"/>
-                                        <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="250"
-                                                MinHeight="20">
-                                            <Grid>
-                                                <TextBox Text="{Binding Apparance}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"
-                                                         AcceptsReturn="True"/>
-                                            </Grid>
-                                        </Border>
-                                    </WrapPanel>
-                                    <WrapPanel Margin="0,5">
-                                        <Label Content="Likes:"
-                                               Foreground="White"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="1,0,0,0"/>
-                                        <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="250"
-                                                MinHeight="20">
-                                            <Grid>
-                                                <TextBox Text="{Binding Likes}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"
-                                                         AcceptsReturn="True"/>
-                                            </Grid>
-                                        </Border>
-                                    </WrapPanel>
-                                    <WrapPanel>
-                                        <Label Content="Dislikes:"
-                                               Foreground="White"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="1,0,0,0"/>
-                                        <Border CornerRadius="8"
-                                                Background="#3e4147"
-                                                MinWidth="250"
-                                                MinHeight="20">
-                                            <Grid>
-                                                <TextBox Text="{Binding Dislikes}"
-                                                         VerticalAlignment="Stretch"
-                                                         VerticalContentAlignment="Center"
-                                                         HorizontalAlignment="Stretch"
-                                                         Background="Transparent"
-                                                         TextWrapping="Wrap"
-                                                         BorderThickness="0"
-                                                         Foreground="LightGray"
-                                                         CaretBrush="LightGray"
-                                                         AcceptsReturn="True"/>
-                                            </Grid>
-                                        </Border>
-                                    </WrapPanel>
-                                </StackPanel>
-                            </BlockUIContainer>
-                        </Floater>
-                    </Paragraph>
-                    <Paragraph>
-                        <StackPanel>
-                            <Label Content="Backstory:"
-                                   Foreground="White"
-                                   VerticalAlignment="Center"
-                                   Margin="1,0,0,0"/>
-                            <Border CornerRadius="8"
-                                    Background="#3e4147"
-                                    MinWidth="250"
-                                    MinHeight="20">
-                                <Grid>
-                                    <TextBox Text="{Binding Backstory}"
-                                             VerticalAlignment="Stretch"
-                                             VerticalContentAlignment="Center"
-                                             HorizontalAlignment="Stretch"
-                                             Background="Transparent"
-                                             TextWrapping="Wrap"
-                                             BorderThickness="0"
-                                             Foreground="LightGray"
-                                             CaretBrush="LightGray"
-                                             AcceptsReturn="True"/>
-                                </Grid>
-                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </WrapPanel>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <WrapPanel Margin="0,5">
+                                    <Label Content="Age:"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="1,0,0,0"/>
+                                    <Border CornerRadius="8"
+                                            Background="#3e4147"
+                                            MinWidth="75"
+                                            MinHeight="20">
+                                        <Grid>
+                                            <TextBox Text="{Binding Age}"
+                                                     VerticalAlignment="Stretch"
+                                                     VerticalContentAlignment="Center"
+                                                     HorizontalAlignment="Stretch"
+                                                     Background="Transparent"
+                                                     TextWrapping="Wrap"
+                                                     BorderThickness="0"
+                                                     Foreground="LightGray"
+                                                     CaretBrush="LightGray"/>
+                                        </Grid>
+                                    </Border>
+                                </WrapPanel>
+                                <WrapPanel Margin="0,5">
+                                    <Label Content="Weight:"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="1,0,0,0"/>
+                                    <Border CornerRadius="8"
+                                            Background="#3e4147"
+                                            MinWidth="75"
+                                            MinHeight="20">
+                                        <Grid>
+                                            <TextBox Text="{Binding Weight}"
+                                                     VerticalAlignment="Stretch"
+                                                     VerticalContentAlignment="Center"
+                                                     HorizontalAlignment="Stretch"
+                                                     Background="Transparent"
+                                                     TextWrapping="Wrap"
+                                                     BorderThickness="0"
+                                                     Foreground="LightGray"
+                                                     CaretBrush="LightGray"/>
+                                        </Grid>
+                                    </Border>
+                                </WrapPanel>
+                                <WrapPanel Margin="0,5">
+                                    <Label Content="Height:"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="1,0,0,0"/>
+                                    <Border CornerRadius="8"
+                                            Background="#3e4147"
+                                            MinWidth="75"
+                                            MinHeight="20">
+                                        <Grid>
+                                            <TextBox Text="{Binding Height}"
+                                                     VerticalAlignment="Stretch"
+                                                     VerticalContentAlignment="Center"
+                                                     HorizontalAlignment="Stretch"
+                                                     Background="Transparent"
+                                                     TextWrapping="Wrap"
+                                                     BorderThickness="0"
+                                                     Foreground="LightGray"
+                                                     CaretBrush="LightGray"/>
+                                        </Grid>
+                                    </Border>
+                                </WrapPanel>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5">
+                                <Label Content="Personality:"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="1,0,0,0"/>
+                                <Border CornerRadius="8"
+                                        Background="#3e4147"
+                                        MinWidth="250"
+                                        MinHeight="20">
+                                    <Grid>
+                                        <TextBox Text="{Binding Personality}"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalAlignment="Stretch"
+                                                 Background="Transparent"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 Foreground="LightGray"
+                                                 CaretBrush="LightGray"
+                                                 AcceptsReturn="True"/>
+                                    </Grid>
+                                </Border>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5">
+                                <Label Content="Apparance:"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="1,0,0,0"/>
+                                <Border CornerRadius="8"
+                                        Background="#3e4147"
+                                        MinWidth="250"
+                                        MinHeight="20">
+                                    <Grid>
+                                        <TextBox Text="{Binding Apparance}"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalAlignment="Stretch"
+                                                 Background="Transparent"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 Foreground="LightGray"
+                                                 CaretBrush="LightGray"
+                                                 AcceptsReturn="True"/>
+                                    </Grid>
+                                </Border>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5">
+                                <Label Content="Likes:"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="1,0,0,0"/>
+                                <Border CornerRadius="8"
+                                        Background="#3e4147"
+                                        MinWidth="250"
+                                        MinHeight="20">
+                                    <Grid>
+                                        <TextBox Text="{Binding Likes}"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalAlignment="Stretch"
+                                                 Background="Transparent"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 Foreground="LightGray"
+                                                 CaretBrush="LightGray"
+                                                 AcceptsReturn="True"/>
+                                    </Grid>
+                                </Border>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label Content="Dislikes:"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="1,0,0,0"/>
+                                <Border CornerRadius="8"
+                                        Background="#3e4147"
+                                        MinWidth="250"
+                                        MinHeight="20">
+                                    <Grid>
+                                        <TextBox Text="{Binding Dislikes}"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalAlignment="Stretch"
+                                                 Background="Transparent"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 Foreground="LightGray"
+                                                 CaretBrush="LightGray"
+                                                 AcceptsReturn="True"/>
+                                    </Grid>
+                                </Border>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5">
+                                <Label Content="Profile Image:"                                                                         Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="1,0,0,0"/>
+                                <Border CornerRadius="8"
+                                        Background="#3e4147"
+                                        MinWidth="250"
+                                        MinHeight="20"
+                                        MaxHeight="250">
+                                    <Grid>
+                                        <TextBox Text="{Binding ProfileImage}"
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalAlignment="Stretch"
+                                                 Background="Transparent"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 ScrollViewer.CanContentScroll="True"
+                                                 Foreground="LightGray"
+                                                 CaretBrush="LightGray"/>
+                                    </Grid>
+                                </Border>
+                            </WrapPanel>
                         </StackPanel>
                     </Paragraph>
-                    <BlockUIContainer>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Margin="5,5"
-                                    Content="Save"
-                                    Background="#333355"
-                                    Foreground="White"
-                                    FontWeight="Medium"
-                                    FontSize="12"
-                                    Width="50"
-                                    Command="{Binding SaveCommand}"/>
-
-                            <Button Margin="5,5"
-                                    Content="Cancel"
-                                    Background="#333355"
-                                    Foreground="White"
-                                    FontWeight="Medium"
-                                    FontSize="12"
-                                    Width="50"
-                                    Command="{Binding CancelCommand}"/>
-                        </StackPanel>
-                    </BlockUIContainer>
-                </Section>
+                </FlowDocument>
+            </FlowDocumentScrollViewer>
+        </Grid>
+        <FlowDocumentScrollViewer Grid.Row="2">
+            <FlowDocument>
+                <Paragraph>
+                    <StackPanel>
+                        <Label Content="Backstory:"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="1,0,0,0"/>
+                        <Border CornerRadius="8"
+                                Background="#3e4147"
+                                MinWidth="250"
+                                MinHeight="20">
+                            <Grid>
+                                <TextBox Text="{Binding Backstory}"
+                                         VerticalAlignment="Stretch"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalAlignment="Stretch"
+                                         Background="Transparent"
+                                         TextWrapping="Wrap"
+                                         BorderThickness="0"
+                                         Foreground="LightGray"
+                                         CaretBrush="LightGray"
+                                         AcceptsReturn="True"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Paragraph>
             </FlowDocument>
         </FlowDocumentScrollViewer>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="3">
+            <Button Margin="5,5"
+                    Content="Save"
+                    Background="#333355"
+                    Foreground="White"
+                    FontWeight="Medium"
+                    FontSize="12"
+                    Width="50"
+                    Command="{Binding SaveCommand}"/>
 
+            <Button Margin="5,5"
+                    Content="Cancel"
+                    Background="#333355"
+                    Foreground="White"
+                    FontWeight="Medium"
+                    FontSize="12"
+                    Width="50"
+                    Command="{Binding CancelCommand}"/>
+
+        </StackPanel>
     </Grid>
 </UserControl>
