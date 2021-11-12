@@ -48,7 +48,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             ViewImageCommand = new RelayCommand(o => 
             {
-                var imageWindow = new ImageWindow(ProfileImage);
+                var imageWindow = new ImageWindow();
                 imageWindow.Show();
             });
 

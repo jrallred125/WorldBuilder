@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorldBuilderWPF.Core;
+﻿using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
@@ -60,7 +55,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             ViewImageCommand = new RelayCommand(o =>
             {
-                var imageWindow = new ImageWindow(Image);
+                var imageWindow = new ImageWindow();
                 imageWindow.Show();
             });
 

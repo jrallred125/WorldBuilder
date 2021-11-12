@@ -62,8 +62,6 @@
                             FontWeight="Bold"
                             Click="ExitButton_Click"/>
 
-
-
                     </StackPanel>
                 </Grid>
 

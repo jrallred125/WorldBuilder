@@ -20,18 +20,9 @@ namespace WorldBuilderWPF
     /// </summary>
     public partial class ImageWindow : Window
     {
-        private string _image;
-
-        public  string Image
-        {
-            get { return _image; }
-            set { _image = value; }
-        }
-
-        public ImageWindow(string image)
+        public ImageWindow()
         {
             InitializeComponent();
-            Image = image;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

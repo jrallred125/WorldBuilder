@@ -57,6 +57,11 @@
                 <view:LoreDetailsView/>
             </DataTemplate>
             
+            <!-- Image views and view models-->
+            <DataTemplate DataType="{x:Type viewModel:ImageViewModel}">
+                <view:ImageView/>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
