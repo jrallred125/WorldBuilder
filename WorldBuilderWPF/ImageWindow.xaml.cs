@@ -33,15 +33,15 @@ namespace WorldBuilderWPF
 
         private void MinmizeButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.MainWindow.WindowState != WindowState.Maximized)
-                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            if (WindowState != WindowState.Maximized)
+                WindowState = WindowState.Maximized;
             else
-                Application.Current.MainWindow.WindowState = WindowState.Normal;
+                WindowState = WindowState.Normal;
         }
 
         private void CloseWindowButton_Click(object sender, RoutedEventArgs e)
