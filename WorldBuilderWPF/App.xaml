@@ -16,8 +16,9 @@
                 <!-- Cards -->
                 <ResourceDictionary Source="Theme/CharacterCard.xaml" />
                 <ResourceDictionary Source="Theme/LoreCard.xaml" />
-                
-                
+                <ResourceDictionary Source="Theme/ItemCard.xaml" />
+
+
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Menu -->
@@ -39,11 +40,18 @@
             <DataTemplate DataType="{x:Type viewModel:ItemsViewModel}">
                 <view:ItemsView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ItemDetailsViewModel}">
+                <view:ItemDetailsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:EditItemViewModel}">
+                <view:EditItemView/>
+            </DataTemplate>
             
             <!-- Location views and view models -->
             <DataTemplate DataType="{x:Type viewModel:LocationsViewModel}">
                 <view:LocationsView/>
             </DataTemplate>
+            
             <!-- Lore views and view models -->
             <DataTemplate DataType="{x:Type viewModel:LoreViewModel}">
                 <view:LoreView/>

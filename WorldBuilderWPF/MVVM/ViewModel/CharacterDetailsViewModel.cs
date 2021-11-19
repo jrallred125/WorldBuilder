@@ -54,8 +54,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         }
 
-
-
         public CharactersViewModel CharactersVM{ get; set; }
 
 
