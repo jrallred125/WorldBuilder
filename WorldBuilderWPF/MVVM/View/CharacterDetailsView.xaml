@@ -34,7 +34,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1">
                     <Image  Source="{Binding ProfileImage}"                                        
-                            Width="250" Height="250"
+                            MaxWidth="250" MaxHeight="250"
                             Margin="10"/>
                     <Button Margin="5,5"
                         Content="View Image"

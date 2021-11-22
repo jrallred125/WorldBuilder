@@ -21,10 +21,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
+
         public ImageViewModel(string image)
         {
             Image = image;
         }
-
+        
     }
 }

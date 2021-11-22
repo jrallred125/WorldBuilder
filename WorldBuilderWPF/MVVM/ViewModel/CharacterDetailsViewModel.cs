@@ -1,4 +1,5 @@
-﻿using WorldBuilderWPF.Core;
+﻿using System.Diagnostics;
+using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
@@ -48,7 +49,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             ViewImageCommand = new RelayCommand(o => 
             {
-                var imageWindow = new ImageWindow();
+                var imageWindow = new ImageWindow(new ImageViewModel(ProfileImage));
                 imageWindow.Show();
             });
 

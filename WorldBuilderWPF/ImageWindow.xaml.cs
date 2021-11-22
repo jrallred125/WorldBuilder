@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WorldBuilderWPF.Core;
+using WorldBuilderWPF.MVVM.ViewModel;
 
 namespace WorldBuilderWPF
 {
@@ -20,9 +21,11 @@ namespace WorldBuilderWPF
     /// </summary>
     public partial class ImageWindow : Window
     {
-        public ImageWindow()
+        public ImageWindow(object viewModel)
         {
             InitializeComponent();
+            var content = (ContentControl)this.FindName("CurrentContent");
+            content.Content = viewModel;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

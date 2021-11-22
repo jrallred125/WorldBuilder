@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WorldBuilderWPF"
         xmlns:viewModel="clr-namespace:WorldBuilderWPF.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="650" Width="1200"
+        Height="800" Width="1200"
+        Title="World Builder"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         Background="#363636"
@@ -61,7 +62,6 @@
                             Foreground="Gray"
                             FontWeight="Bold"
                             Click="ExitButton_Click"/>
-
                     </StackPanel>
                 </Grid>
 
@@ -109,7 +109,7 @@
 
             <ContentControl Grid.Row="2"
                             Margin="10"
-                            Content="{Binding CurrentView }"/>
+                            Content="{Binding CurrentView}"/>
         </Grid>
         
         

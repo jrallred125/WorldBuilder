@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:WorldBuilderWPF" xmlns:viewModel="clr-namespace:WorldBuilderWPF.MVVM.ViewModel"
         mc:Ignorable="d"
         Height="650" Width="1200"
+        Title="View Image"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         Background="#363636"
         AllowsTransparency="True">
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -57,9 +59,9 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <ContentControl Grid.Row="2"
-                        Margin="10"
-                        Content="{Binding CurrentView}"/>
+        <ContentControl Name="CurrentContent"
+                        Grid.Row="2"
+                        Margin="10"/>
 
     </Grid>
 </Window>

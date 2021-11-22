@@ -6,6 +6,7 @@ using WorldBuilderWPF.MVVM.Model;
 
 namespace WorldBuilderWPF.Core
 {
+    [Serializable]
     public class DataController
     {
         private static volatile DataController _instance;
@@ -55,7 +56,7 @@ namespace WorldBuilderWPF.Core
             }
             else Lore = new ObservableCollection<LoreModel>();
 
-            string itemfile = "./data/itemdata.json";
+            string itemfile = "./data/itemsdata.json";
             if (File.Exists(itemfile))
             {
                 string jsonString = File.ReadAllText(itemfile);
@@ -146,7 +147,23 @@ namespace WorldBuilderWPF.Core
             Items.Remove(item);
         }
 
+        public CharacterModel GetRandomCharacter()
+        {
+            Random rand = new Random();
+            return Characters[rand.Next(0, Characters.Count)];
+        }
 
+        public LoreModel GetRandomLore()
+        {
+            Random rand = new Random();
+            return Lore[rand.Next(0, Lore.Count)];
+        }
+
+        public ItemModel GetRandomItem()
+        {
+            Random rand = new Random();
+            return Items[rand.Next(0, Items.Count)];
+        }
         public void OnExit()
         {
             WriteCharacters();
