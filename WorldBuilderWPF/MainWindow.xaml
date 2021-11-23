@@ -13,7 +13,7 @@
         Background="#363636"
         AllowsTransparency="True">
     <Window.DataContext>
-        <viewModel:MainViewModel/>
+        <viewModel:MainViewModel />
     </Window.DataContext>
 
     <Border Background="#272537"

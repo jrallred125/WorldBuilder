@@ -149,20 +149,34 @@ namespace WorldBuilderWPF.Core
 
         public CharacterModel GetRandomCharacter()
         {
-            Random rand = new Random();
-            return Characters[rand.Next(0, Characters.Count)];
+            if (Characters.Count > 0)
+            {
+                Random rand = new Random();
+                return Characters[rand.Next(0, Characters.Count)];
+            }
+            return null;
+            
         }
 
         public LoreModel GetRandomLore()
         {
-            Random rand = new Random();
-            return Lore[rand.Next(0, Lore.Count)];
+            if (Lore.Count > 0)
+            {
+                Random rand = new Random();
+                return Lore[rand.Next(0, Lore.Count)];
+            }
+            return null;
+            
         }
 
         public ItemModel GetRandomItem()
         {
-            Random rand = new Random();
-            return Items[rand.Next(0, Items.Count)];
+            if (Items.Count > 0)
+            {
+                Random rand = new Random();
+                return Items[rand.Next(0, Items.Count)];
+            }
+            return null;
         }
         public void OnExit()
         {

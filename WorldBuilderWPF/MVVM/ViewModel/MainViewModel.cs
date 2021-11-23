@@ -18,6 +18,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public RelayCommand LocationsViewCommand { get; set; }
 
         public RelayCommand LoreViewCommand { get; set; }
+
         public HomeViewModel HomeVm { get; set; }
 
         public CharactersViewModel CharactersVm { get; set; }

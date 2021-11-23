@@ -49,7 +49,7 @@
             <Border Width="550"
                     Height="300"
                     CornerRadius="10"
-                    Margin="45,0,0,0">
+                    Margin="20,0,0,0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#BB180D" Offset="0.0" />
@@ -62,19 +62,19 @@
                         <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="{Binding LoreTitle}"
+                        <TextBlock Text="Location Name"
                                    TextWrapping="Wrap"
                                    Foreground="White"
                                    FontSize="28"
                                    Margin="20,10,10,0"/>
 
-                        <TextBlock Text="{Binding LoreSummary}"
+                        <TextBlock Text="Location Summary"
                                    Foreground="White"
                                    FontSize="18"
                                    TextWrapping="Wrap"
                                    Margin="20,10,10,0"/>
                     </StackPanel>
-                    <Image Source="{Binding LoreImage}" 
+                    <Image Source="../../Images/79720.png" 
                            Grid.Column="1"
                            VerticalAlignment="Center"
                            MaxWidth="175"
@@ -101,6 +101,43 @@
                         <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
+                        <TextBlock Text="{Binding LoreTitle}"
+                                   TextWrapping="Wrap"
+                                   Foreground="White"
+                                   FontSize="28"
+                                   Margin="20,10,10,0"/>
+
+                        <TextBlock Text="{Binding LoreSummary}"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   TextWrapping="Wrap"
+                                   Margin="20,10,10,0"/>
+                    </StackPanel>
+                    <Image Source="{Binding LoreImage}" 
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           MaxWidth="175"
+                           Margin="5"/>
+
+
+                </Grid>
+            </Border>
+            <Border Width="550"
+                    Height="300"
+                    CornerRadius="10"
+                    Margin="20,0,0,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#115610" Offset="0.0" />
+                        <GradientStop Color="#44D811" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
                         <TextBlock Text="{Binding ItemName}"
                                    TextWrapping="Wrap"
                                    Foreground="White"
@@ -114,43 +151,6 @@
                                    Margin="20,10,10,0"/>
                     </StackPanel>
                     <Image Source="{Binding ItemImage}" 
-                           Grid.Column="1"
-                           VerticalAlignment="Center"
-                           MaxWidth="175"
-                           Margin="5"/>
-
-
-                </Grid>
-            </Border>
-            <Border Width="550"
-                    Height="300"
-                    CornerRadius="10"
-                    Margin="45,0,0,0">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#115610" Offset="0.0" />
-                        <GradientStop Color="#44D811" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="200"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Location Name"
-                                   TextWrapping="Wrap"
-                                   Foreground="White"
-                                   FontSize="28"
-                                   Margin="20,10,10,0"/>
-
-                        <TextBlock Text="Location Summary"
-                                   Foreground="White"
-                                   FontSize="18"
-                                   TextWrapping="Wrap"
-                                   Margin="20,10,10,0"/>
-                    </StackPanel>
-                    <Image Source="{Binding LoreImage}" 
                            Grid.Column="1"
                            VerticalAlignment="Center"
                            MaxWidth="175"
