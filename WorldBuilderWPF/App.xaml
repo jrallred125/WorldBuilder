@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="Theme/CharacterCard.xaml" />
                 <ResourceDictionary Source="Theme/LoreCard.xaml" />
                 <ResourceDictionary Source="Theme/ItemCard.xaml" />
+                
 
 
             </ResourceDictionary.MergedDictionaries>
