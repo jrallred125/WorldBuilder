@@ -19,9 +19,14 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public string ItemName { get; set; } = "";
         public string ItemImage { get; set; } = "";
-        public string ItemDiscription { get; set; } = "";
+        public string ItemDescription { get; set; } = "";
 
         public HomeViewModel()
+        {
+            UpdateSplashPage();            
+        }
+
+        public void UpdateSplashPage()
         {
             CharacterModel character = DataController.Instance.GetRandomCharacter();
             if (character != null)
@@ -36,15 +41,14 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 LoreTitle = lore.Title;
                 LoreSummary = lore.Summary;
                 LoreImage = lore.Image;
-            }            
+            }
             ItemModel item = DataController.Instance.GetRandomItem();
             if (item != null)
             {
                 ItemName = item.Name;
-                ItemDiscription = item.Discription;
+                ItemDescription = item.Description;
                 ItemImage = item.Image;
             }
-            
         }
 
 

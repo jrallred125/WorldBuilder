@@ -11,6 +11,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 {
     public class ItemsViewModel : ObservableObject
     {
+        public List<string> Types { get; set; } = new List<string> { "Weapon", "Armor", "Healing", "Generic" };
+
         private ObservableCollection<ItemModel> _items;
 
         public ObservableCollection<ItemModel> Items
@@ -60,14 +62,34 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 OnPropertyChanged();
                 if (_selectedItem != null)
                 {
-                    OpenCharacterDetails();
+                    OpenItemDetails();
                 }
             }
         }
 
-        private void OpenCharacterDetails()
+        private string _typeOfItem = "";
+        public string TypeOfItem
         {
-            CurrentView = new ItemDetailsViewModel(SelectedItem, this);
+            get { return _typeOfItem; }
+            set
+            {
+
+                _typeOfItem = value.ToString();
+                OnPropertyChanged();
+            }
+        }
+
+        private void OpenItemDetails()
+        {
+            switch (SelectedItem.Type)
+            {
+                case "Weapon":
+                    CurrentView = new WeaponDetailsViewModel((WeaponModel)SelectedItem, this);
+                    break;
+                default:
+                    CurrentView = new ItemDetailsViewModel(SelectedItem, this);
+                    break;
+            }
         }
 
         public ItemsViewModel()
@@ -81,8 +103,19 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             NewItemCommand = new RelayCommand(o =>
             {
-                ItemModel item = new ItemModel();
-                CurrentView = new EditItemViewModel(item, this, true);
+                
+                switch (TypeOfItem)
+                {
+                    case "Weapon":
+                        WeaponModel weapon = new WeaponModel();
+                        CurrentView = new EditWeaponViewModel(weapon, this, true);
+                        break;
+                    default:
+                        ItemModel item = new ItemModel();
+                        CurrentView = new EditItemViewModel(item, this, true);
+                        break;
+                }
+                
             });
 
         }

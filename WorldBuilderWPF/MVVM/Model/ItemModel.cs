@@ -18,9 +18,9 @@ namespace WorldBuilderWPF.MVVM.Model
         /// </summary>
         public string Type { get; set; } = "";
         /// <summary>
-        /// The discription of the item.
+        /// The description of the item.
         /// </summary>
-        public string Discription { get; set; } = "";
+        public string Description { get; set; } = "";
         /// <summary>
         /// The path to the image of the item.
         /// </summary>
@@ -28,14 +28,15 @@ namespace WorldBuilderWPF.MVVM.Model
         /// <summary>
         /// The cost of the item from a store.
         /// </summary>
-        public string PlayerCost { get; set; } = "";
+        public string Value { get; set; } = "";
         /// <summary>
         /// The sell price to a store.
         /// </summary>
-        public string PlayerSell { get; set; } = "";
-
-
-
+        public string Weight { get; set; } = "";
+        /// <summary>
+        /// The properties of the item
+        /// </summary>
+        public string Properties { get; set; } = "";
 
     }
 }

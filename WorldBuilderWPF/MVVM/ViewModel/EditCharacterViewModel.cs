@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
+using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
@@ -14,6 +15,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public RelayCommand SaveCommand { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
+
+        public RelayCommand OpenFileCommand { get; set; }
 
 
         private CharacterModel _character;
@@ -84,6 +87,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 else {
                     CharactersVM.CurrentView = new CharacterDetailsViewModel(SelectedCharacter, CharactersVM);
                 }
+            });
+
+            OpenFileCommand = new RelayCommand(o =>
+            {
+                ProfileImage = new OpenFileDialogService().OpenFileDialog();
             });
 
         }

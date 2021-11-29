@@ -56,6 +56,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             HomeViewCommand = new RelayCommand(o => 
             {
+                HomeVm.UpdateSplashPage();
                 CurrentView = HomeVm;
             });
 

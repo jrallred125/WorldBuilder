@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="MVVM\View\EditLoreView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

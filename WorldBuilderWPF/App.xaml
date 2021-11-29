@@ -47,6 +47,12 @@
             <DataTemplate DataType="{x:Type viewModel:EditItemViewModel}">
                 <view:EditItemView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:WeaponDetailsViewModel}">
+                <view:WeaponDetailsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:EditWeaponViewModel}">
+                <view:EditWeaponView/>
+            </DataTemplate>
             
             <!-- Location views and view models -->
             <DataTemplate DataType="{x:Type viewModel:LocationsViewModel}">
@@ -70,7 +76,7 @@
             <DataTemplate DataType="{x:Type viewModel:ImageViewModel}">
                 <view:ImageView/>
             </DataTemplate>
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

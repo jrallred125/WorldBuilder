@@ -29,8 +29,16 @@
                 <ColumnDefinition Width="275"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1">
-                <Image  Source="{Binding ProfileImage}"                                   
-                        MaxWidth="250" MaxHeight="250"                                        
+                <Button Margin="5,5"
+                        Content="Open File"
+                        Background="#333355"
+                        Foreground="White"
+                        FontWeight="Medium"
+                        FontSize="12"
+                        Width="75"
+                        Command="{Binding OpenFileCommand}"/>
+                <Image  Source="{Binding ProfileImage}"
+                        MaxWidth="275" MaxHeight="275"
                         Margin="10"/>
             </StackPanel>
             <FlowDocumentScrollViewer Grid.Row="0"

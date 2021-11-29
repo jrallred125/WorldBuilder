@@ -9,18 +9,16 @@ using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class EditItemViewModel : ObservableObject
+    public class EditWeaponViewModel :ObservableObject
     {
         public RelayCommand SaveCommand { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
-
         public RelayCommand OpenFileCommand { get; set; }
 
+        private WeaponModel _selectedItem;
 
-        private ItemModel _selectedItem;
-
-        public ItemModel SelectedItem
+        public WeaponModel SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -29,12 +27,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-
         private bool isNewCharacter { get; set; }
 
         public ItemsViewModel ItemsVM { get; set; }
 
-        public EditItemViewModel(ItemModel item, ItemsViewModel itemsVM, bool isNew)
+        public EditWeaponViewModel(WeaponModel item, ItemsViewModel itemsVM, bool isNew)
         {
             SelectedItem = item;
             ItemsVM = itemsVM;
@@ -48,6 +45,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 Value = SelectedItem.Value;
                 Weight = SelectedItem.Weight;
                 Description = SelectedItem.Description;
+                Damage = SelectedItem.Damage;
                 Properties = SelectedItem.Properties;
             }
 
@@ -59,6 +57,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 SelectedItem.Value = Value;
                 SelectedItem.Weight = Weight;
                 SelectedItem.Description = Description;
+                SelectedItem.Damage = Damage;
                 SelectedItem.Properties = Properties;
                 if (isNewCharacter)
                 {
@@ -158,16 +157,28 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
+        private string _damage;
+
+        public string Damage
+        {
+            get { return _damage; }
+            set
+            {
+                _damage = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _properties;
 
         public string Properties
         {
             get { return _properties; }
-            set
-            {
+            set { 
                 _properties = value;
                 OnPropertyChanged();
             }
         }
+
     }
 }

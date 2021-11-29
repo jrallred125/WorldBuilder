@@ -144,7 +144,7 @@
                                    FontSize="28"
                                    Margin="20,10,10,0"/>
 
-                        <TextBlock Text="{Binding ItemDiscription}"
+                        <TextBlock Text="{Binding ItemDescription}"
                                    Foreground="White"
                                    FontSize="18"
                                    TextWrapping="Wrap"

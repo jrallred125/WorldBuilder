@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
@@ -12,6 +13,14 @@ namespace WorldBuilderWPF.Core
         private static volatile DataController _instance;
 
         private static object _mylock = new Object();
+
+        private string path = "./data/";
+
+        private string characterJsonFile = "chardata.json";
+
+        private string loreJsonFile = "loredata.json";
+
+        private string itemsJsonFile = "itemsdata.json";
 
         public static DataController Instance
         {
@@ -40,27 +49,32 @@ namespace WorldBuilderWPF.Core
 
         private DataController()
         {
-            string characterfile = "./data/chardata.json";
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            string characterfile = $"{path}{characterJsonFile}";
             if (File.Exists(characterfile))
             {
                 string jsonString = File.ReadAllText(characterfile);
-                Characters = JsonSerializer.Deserialize<ObservableCollection<CharacterModel>>(jsonString);
+                Characters = JsonConvert.DeserializeObject<ObservableCollection<CharacterModel>>(jsonString, settings);
             }
             else Characters = new ObservableCollection<CharacterModel>();
 
-            string lorefile = "./data/loredata.json";
+            string lorefile = $"{path}{loreJsonFile}"; ;
             if (File.Exists(lorefile))
             {
                 string jsonString = File.ReadAllText(lorefile);
-                Lore = JsonSerializer.Deserialize<ObservableCollection<LoreModel>>(jsonString);
+                Lore = JsonConvert.DeserializeObject<ObservableCollection<LoreModel>>(jsonString, settings);
             }
             else Lore = new ObservableCollection<LoreModel>();
 
-            string itemfile = "./data/itemsdata.json";
+            string itemfile = $"{path}{itemsJsonFile}"; ;
             if (File.Exists(itemfile))
             {
                 string jsonString = File.ReadAllText(itemfile);
-                Items = JsonSerializer.Deserialize<ObservableCollection<ItemModel>>(jsonString);
+                Items = JsonConvert.DeserializeObject<ObservableCollection<ItemModel>>(jsonString,settings);
             }
             else Items = new ObservableCollection<ItemModel>();
         }
@@ -75,7 +89,7 @@ namespace WorldBuilderWPF.Core
             ObservableCollection<CharacterModel> found = new ObservableCollection<CharacterModel>();
             foreach (var character in Characters)
             {
-                if (character.Name.ToLower().Contains(value.ToLower())|| character.Race.ToLower().Contains(value.ToLower())|| character.Gender.ToLower() == value.ToLower())
+                if (character.Name.ToLower().Contains(value.ToLower())|| character.Race.ToLower().Contains(value.ToLower())|| character.Gender.ToLower().StartsWith(value.ToLower()))
                 {
                     found.Add(character);
                 }
@@ -180,41 +194,43 @@ namespace WorldBuilderWPF.Core
         }
         public void OnExit()
         {
-            WriteCharacters();
-            WriteLore();
-            WriteItems();
+            JsonSerializerSettings settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            WriteCharacters(settings);
+            WriteLore(settings);
+            WriteItems(settings);
         }
 
-        private void WriteCharacters()
+        private void WriteCharacters(JsonSerializerSettings settings)
         {
             if (Characters.Count > 0)
             {
-                string characterfile = "./data/chardata.json";
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                string jsonCharacters = JsonSerializer.Serialize(Characters, options);
+                string characterfile = $"{path}{characterJsonFile}";
+                string jsonCharacters = JsonConvert.SerializeObject(Characters, settings);
                 File.WriteAllText(characterfile, jsonCharacters);
             }
         }
 
-        private void WriteLore()
+        private void WriteLore(JsonSerializerSettings settings)
         {
             if (Lore.Count > 0)
             {
-                string lorefile = "./data/loredata.json";
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                string jsonLore = JsonSerializer.Serialize(Lore, options);
+                string lorefile = $"{path}{loreJsonFile}";
+                string jsonLore = JsonConvert.SerializeObject(Lore, settings);
                 File.WriteAllText(lorefile, jsonLore);
             }
         }
 
-        private void WriteItems()
+        private void WriteItems(JsonSerializerSettings settings)
         {
             if (Items.Count > 0)
             {
-                string itemsfile = "./data/itemsdata.json";
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                string jsonLore = JsonSerializer.Serialize(Items, options);
-                File.WriteAllText(itemsfile, jsonLore);
+                string itemsfile = $"{path}{itemsJsonFile}";
+                string jsonItems = JsonConvert.SerializeObject(Items, settings);
+                File.WriteAllText(itemsfile, jsonItems);
             }
 
         }

@@ -5,22 +5,62 @@ using System.Text;
 using System.Threading.Tasks;
 using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
-using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class EditItemViewModel : ObservableObject
+    public class WeaponDetailsViewModel :ObservableObject
     {
-        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand EditItemCommand { get; set; }
 
-        public RelayCommand CancelCommand { get; set; }
+        public RelayCommand DeleteItemCommand { get; set; }
 
-        public RelayCommand OpenFileCommand { get; set; }
+        public RelayCommand ViewImageCommand { get; set; }
 
 
-        private ItemModel _selectedItem;
+        public WeaponDetailsViewModel(WeaponModel item, ItemsViewModel itemsVm)
+        {
+            SelectedItem = item;
+            ItemsVM = itemsVm;
+            if (SelectedItem != null)
+            {
+                Name = SelectedItem.Name;
+                Image = SelectedItem.Image;
+                Type = SelectedItem.Type;
+                Value = SelectedItem.Value;
+                Weight = SelectedItem.Weight;
+                Description = SelectedItem.Description;
+                Damage = SelectedItem.Damage;
+                Properties = SelectedItem.Properties;
+            }
 
-        public ItemModel SelectedItem
+
+
+            DeleteItemCommand = new RelayCommand(o =>
+            {
+                ItemsVM.CurrentView = null;
+                DataController.Instance.RemoveItem(SelectedItem);
+                SelectedItem = null;
+            });
+
+            EditItemCommand = new RelayCommand(o =>
+            {
+                ItemsVM.CurrentView = new EditWeaponViewModel(SelectedItem, ItemsVM, false);
+            });
+
+            ViewImageCommand = new RelayCommand(o =>
+            {
+                var imageWindow = new ImageWindow(new ImageViewModel(Image));
+                imageWindow.Show();
+            });
+
+        }
+
+        public ItemsViewModel ItemsVM { get; set; }
+
+
+        private WeaponModel _selectedItem;
+
+        public WeaponModel SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -30,62 +70,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
-        private bool isNewCharacter { get; set; }
-
-        public ItemsViewModel ItemsVM { get; set; }
-
-        public EditItemViewModel(ItemModel item, ItemsViewModel itemsVM, bool isNew)
-        {
-            SelectedItem = item;
-            ItemsVM = itemsVM;
-            isNewCharacter = isNew;
-
-            if (SelectedItem != null)
-            {
-                Name = SelectedItem.Name;
-                Image = SelectedItem.Image;
-                Type = SelectedItem.Type;
-                Value = SelectedItem.Value;
-                Weight = SelectedItem.Weight;
-                Description = SelectedItem.Description;
-                Properties = SelectedItem.Properties;
-            }
-
-            SaveCommand = new RelayCommand(o =>
-            {
-                SelectedItem.Name = Name;
-                SelectedItem.Image = Image;
-                SelectedItem.Type = Type;
-                SelectedItem.Value = Value;
-                SelectedItem.Weight = Weight;
-                SelectedItem.Description = Description;
-                SelectedItem.Properties = Properties;
-                if (isNewCharacter)
-                {
-                    DataController.Instance.AddItem(SelectedItem);
-                }
-                ItemsVM.CurrentView = new ItemDetailsViewModel(SelectedItem, ItemsVM);
-            });
-
-            CancelCommand = new RelayCommand(o =>
-            {
-                if (isNewCharacter)
-                {
-                    itemsVM.CurrentView = null;
-                    SelectedItem = null;
-                }
-                else
-                {
-                    ItemsVM.CurrentView = new ItemDetailsViewModel(SelectedItem, ItemsVM);
-                }
-            });
-
-            OpenFileCommand = new RelayCommand(o =>
-            {
-                Image = new OpenFileDialogService().OpenFileDialog();
-            });
-
-        }
         private string _name;
 
         public string Name
@@ -154,6 +138,18 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             set
             {
                 _description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _damage;
+
+        public string Damage
+        {
+            get { return _damage; }
+            set
+            {
+                _damage = value;
                 OnPropertyChanged();
             }
         }

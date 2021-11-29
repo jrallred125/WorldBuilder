@@ -27,9 +27,10 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 Name = SelectedItem.Name;
                 Image = SelectedItem.Image;
                 Type = SelectedItem.Type;
-                PlayerCost = SelectedItem.PlayerCost;
-                PlayerSell = SelectedItem.PlayerSell;
-                Discription = SelectedItem.Discription;
+                Value = SelectedItem.Value;
+                Weight = SelectedItem.Weight;
+                Description = SelectedItem.Description;
+                Properties = SelectedItem.Properties;
             }
 
 
@@ -105,38 +106,49 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
-        private string _playerCost;
+        private string _value;
 
-        public string PlayerCost
+        public string Value
         {
-            get { return _playerCost; }
+            get { return _value; }
             set
             {
-                _playerCost = value;
+                _value = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _playerSell;
+        private string _weight;
 
-        public string PlayerSell
+        public string Weight
         {
-            get { return _playerSell; }
+            get { return _weight; }
             set
             {
-                _playerSell = value;
+                _weight = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _discription;
+        private string _description;
 
-        public string Discription
+        public string Description
         {
-            get { return _discription; }
+            get { return _description; }
             set
             {
-                _discription = value;
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _properties;
+        public string Properties
+        {
+            get { return _properties; }
+            set
+            {
+                _properties = value;
                 OnPropertyChanged();
             }
         }

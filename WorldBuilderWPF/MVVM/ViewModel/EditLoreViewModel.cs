@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
+using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
@@ -13,6 +14,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public RelayCommand SaveCommand { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
+
+        public RelayCommand OpenFileCommand { get; set; }
 
 
         private LoreModel _selectedLore;
@@ -69,6 +72,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 else {
                     LoreVM.CurrentView = new LoreDetailsViewModel(SelectedLore, LoreVM);
                 }
+            });
+
+            OpenFileCommand = new RelayCommand(o =>
+            {
+                Image = new OpenFileDialogService().OpenFileDialog();
             });
 
         }
