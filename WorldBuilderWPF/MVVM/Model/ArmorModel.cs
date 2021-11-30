@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace WorldBuilderWPF.MVVM.Model
 {
     [Serializable]
-    public class WeaponModel : ItemModel
+    public class ArmorModel : ItemModel
     {
         /// <summary>
-        /// The Damage rating of the weapon. 
+        /// The AC of the armor.
         /// </summary>
-        public string Damage { get; set; }
+        public string ArmorClass { get; set; } = "";
 
-        public WeaponModel()
+        public ArmorModel()
         {
-            Type = "Weapon";
+            Type = "Armor";
         }
     }
 }

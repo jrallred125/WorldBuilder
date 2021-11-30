@@ -9,16 +9,16 @@ using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class EditWeaponViewModel :ObservableObject
+    public class EditArmorViewModel :ObservableObject
     {
         public RelayCommand SaveCommand { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
         public RelayCommand OpenFileCommand { get; set; }
 
-        private WeaponModel _selectedItem;
+        private ArmorModel _selectedItem;
 
-        public WeaponModel SelectedItem
+        public ArmorModel SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -31,7 +31,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public ItemsViewModel ItemsVM { get; set; }
 
-        public EditWeaponViewModel(WeaponModel item, ItemsViewModel itemsVM, bool isNew)
+        public EditArmorViewModel(ArmorModel item, ItemsViewModel itemsVM, bool isNew)
         {
             SelectedItem = item;
             ItemsVM = itemsVM;
@@ -45,7 +45,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 Value = SelectedItem.Value;
                 Weight = SelectedItem.Weight;
                 Description = SelectedItem.Description;
-                Damage = SelectedItem.Damage;
+                ArmorClass = SelectedItem.ArmorClass;
                 Properties = SelectedItem.Properties;
             }
 
@@ -57,13 +57,13 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 SelectedItem.Value = Value;
                 SelectedItem.Weight = Weight;
                 SelectedItem.Description = Description;
-                SelectedItem.Damage = Damage;
+                SelectedItem.ArmorClass = ArmorClass;
                 SelectedItem.Properties = Properties;
                 if (isNewCharacter)
                 {
                     DataController.Instance.AddItem(SelectedItem);
                 }
-                ItemsVM.CurrentView = new WeaponDetailsViewModel(SelectedItem, ItemsVM);
+                ItemsVM.CurrentView = new ArmorDetailsViewModel(SelectedItem, ItemsVM);
             });
 
             CancelCommand = new RelayCommand(o =>
@@ -75,7 +75,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 }
                 else
                 {
-                    ItemsVM.CurrentView = new WeaponDetailsViewModel(SelectedItem, ItemsVM);
+                    ItemsVM.CurrentView = new ArmorDetailsViewModel(SelectedItem, ItemsVM);
                 }
             });
 
@@ -157,14 +157,14 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
-        private string _damage;
+        private string _armorClass;
 
-        public string Damage
+        public string ArmorClass
         {
-            get { return _damage; }
+            get { return _armorClass; }
             set
             {
-                _damage = value;
+                _armorClass = value;
                 OnPropertyChanged();
             }
         }
@@ -174,11 +174,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public string Properties
         {
             get { return _properties; }
-            set { 
+            set
+            {
                 _properties = value;
                 OnPropertyChanged();
             }
         }
-
     }
 }

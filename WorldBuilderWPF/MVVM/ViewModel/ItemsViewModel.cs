@@ -74,7 +74,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             set
             {
 
-                _typeOfItem = value.ToString();
+                _typeOfItem = value;
                 OnPropertyChanged();
             }
         }
@@ -86,6 +86,9 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 case "Weapon":
                     CurrentView = new WeaponDetailsViewModel((WeaponModel)SelectedItem, this);
                     break;
+                case "Armor":
+                    CurrentView = new ArmorDetailsViewModel((ArmorModel)SelectedItem, this);
+                    break;
                 default:
                     CurrentView = new ItemDetailsViewModel(SelectedItem, this);
                     break;
@@ -94,6 +97,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public ItemsViewModel()
         {
+            Types.Sort();
             Items = DataController.Instance.SearchItems(SearchProp);
 
             SearchCommand = new RelayCommand(o =>
@@ -109,6 +113,10 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                     case "Weapon":
                         WeaponModel weapon = new WeaponModel();
                         CurrentView = new EditWeaponViewModel(weapon, this, true);
+                        break;
+                    case "Armor":
+                        ArmorModel armor = new ArmorModel();
+                        CurrentView = new EditArmorViewModel(armor, this, true);
                         break;
                     default:
                         ItemModel item = new ItemModel();

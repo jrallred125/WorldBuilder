@@ -53,6 +53,12 @@
             <DataTemplate DataType="{x:Type viewModel:EditWeaponViewModel}">
                 <view:EditWeaponView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ArmorDetailsViewModel}">
+                <view:ArmorDetailsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:EditArmorViewModel}">
+                <view:EditArmorView/>
+            </DataTemplate>
             
             <!-- Location views and view models -->
             <DataTemplate DataType="{x:Type viewModel:LocationsViewModel}">

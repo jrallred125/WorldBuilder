@@ -5,38 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
-using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class EditWeaponViewModel :ObservableObject
+    public class ArmorDetailsViewModel:ObservableObject
     {
-        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand EditItemCommand { get; set; }
 
-        public RelayCommand CancelCommand { get; set; }
-        public RelayCommand OpenFileCommand { get; set; }
+        public RelayCommand DeleteItemCommand { get; set; }
 
-        private WeaponModel _selectedItem;
+        public RelayCommand ViewImageCommand { get; set; }
 
-        public WeaponModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                _selectedItem = value;
-                OnPropertyChanged();
-            }
-        }
-        private bool isNewCharacter { get; set; }
 
-        public ItemsViewModel ItemsVM { get; set; }
-
-        public EditWeaponViewModel(WeaponModel item, ItemsViewModel itemsVM, bool isNew)
+        public ArmorDetailsViewModel(ArmorModel item, ItemsViewModel itemsVm)
         {
             SelectedItem = item;
-            ItemsVM = itemsVM;
-            isNewCharacter = isNew;
-
+            ItemsVM = itemsVm;
             if (SelectedItem != null)
             {
                 Name = SelectedItem.Name;
@@ -45,46 +29,47 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 Value = SelectedItem.Value;
                 Weight = SelectedItem.Weight;
                 Description = SelectedItem.Description;
-                Damage = SelectedItem.Damage;
+                ArmorClass = SelectedItem.ArmorClass;
                 Properties = SelectedItem.Properties;
             }
 
-            SaveCommand = new RelayCommand(o =>
+
+
+            DeleteItemCommand = new RelayCommand(o =>
             {
-                SelectedItem.Name = Name;
-                SelectedItem.Image = Image;
-                SelectedItem.Type = Type;
-                SelectedItem.Value = Value;
-                SelectedItem.Weight = Weight;
-                SelectedItem.Description = Description;
-                SelectedItem.Damage = Damage;
-                SelectedItem.Properties = Properties;
-                if (isNewCharacter)
-                {
-                    DataController.Instance.AddItem(SelectedItem);
-                }
-                ItemsVM.CurrentView = new WeaponDetailsViewModel(SelectedItem, ItemsVM);
+                ItemsVM.CurrentView = null;
+                DataController.Instance.RemoveItem(SelectedItem);
+                SelectedItem = null;
             });
 
-            CancelCommand = new RelayCommand(o =>
+            EditItemCommand = new RelayCommand(o =>
             {
-                if (isNewCharacter)
-                {
-                    itemsVM.CurrentView = null;
-                    SelectedItem = null;
-                }
-                else
-                {
-                    ItemsVM.CurrentView = new WeaponDetailsViewModel(SelectedItem, ItemsVM);
-                }
+                ItemsVM.CurrentView = new EditArmorViewModel(SelectedItem, ItemsVM, false);
             });
 
-            OpenFileCommand = new RelayCommand(o =>
+            ViewImageCommand = new RelayCommand(o =>
             {
-                Image = new OpenFileDialogService().OpenFileDialog();
+                var imageWindow = new ImageWindow(new ImageViewModel(Image));
+                imageWindow.Show();
             });
 
         }
+
+        public ItemsViewModel ItemsVM { get; set; }
+
+
+        private ArmorModel _selectedItem;
+
+        public ArmorModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _name;
 
         public string Name
@@ -157,14 +142,14 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
-        private string _damage;
+        private string _armorClass;
 
-        public string Damage
+        public string ArmorClass
         {
-            get { return _damage; }
+            get { return _armorClass; }
             set
             {
-                _damage = value;
+                _armorClass = value;
                 OnPropertyChanged();
             }
         }
@@ -174,11 +159,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public string Properties
         {
             get { return _properties; }
-            set { 
+            set
+            {
                 _properties = value;
                 OnPropertyChanged();
             }
         }
-
     }
 }
