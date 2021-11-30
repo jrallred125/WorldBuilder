@@ -14,9 +14,6 @@ namespace WorldBuilderWPF.MVVM.Model
         /// </summary>
         public string Damage { get; set; }
 
-        public WeaponModel()
-        {
-            Type = "Weapon";
-        }
+        public WeaponModel(string type) : base(type) { }
     }
 }

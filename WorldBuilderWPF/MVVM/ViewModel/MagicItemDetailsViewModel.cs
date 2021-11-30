@@ -5,41 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
-using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class EditItemViewModel : ObservableObject
+    public class MagicItemDetailsViewModel : ObservableObject
     {
-        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand EditItemCommand { get; set; }
 
-        public RelayCommand CancelCommand { get; set; }
+        public RelayCommand DeleteItemCommand { get; set; }
 
-        public RelayCommand OpenFileCommand { get; set; }
+        public RelayCommand ViewImageCommand { get; set; }
 
 
-        private ItemModel _selectedItem;
-
-        public ItemModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                _selectedItem = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool isNewCharacter { get; set; }
-
-        public ItemsViewModel ItemsVM { get; set; }
-
-        public EditItemViewModel(ItemModel item, ItemsViewModel itemsVM, bool isNew)
+        public MagicItemDetailsViewModel(MagicItemModel item, ItemsViewModel itemsVm)
         {
             SelectedItem = item;
-            ItemsVM = itemsVM;
-            isNewCharacter = isNew;
-
+            ItemsVM = itemsVm;
             if (SelectedItem != null)
             {
                 Name = SelectedItem.Name;
@@ -49,43 +30,48 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 Weight = SelectedItem.Weight;
                 Description = SelectedItem.Description;
                 Properties = SelectedItem.Properties;
+                Rarity = SelectedItem.Rarity;
+                Bonus = SelectedItem.Bonus;
+                IsCursed = SelectedItem.IsCursed;
             }
 
-            SaveCommand = new RelayCommand(o =>
+
+
+            DeleteItemCommand = new RelayCommand(o =>
             {
-                SelectedItem.Name = Name;
-                SelectedItem.Image = Image;
-                SelectedItem.Type = Type;
-                SelectedItem.Value = Value;
-                SelectedItem.Weight = Weight;
-                SelectedItem.Description = Description;
-                SelectedItem.Properties = Properties;
-                if (isNewCharacter)
-                {
-                    DataController.Instance.AddItem(SelectedItem);
-                }
-                ItemsVM.CurrentView = new ItemDetailsViewModel(SelectedItem, ItemsVM);
+                ItemsVM.CurrentView = null;
+                DataController.Instance.RemoveItem(SelectedItem);
+                SelectedItem = null;
             });
 
-            CancelCommand = new RelayCommand(o =>
+            EditItemCommand = new RelayCommand(o =>
             {
-                if (isNewCharacter)
-                {
-                    ItemsVM.CurrentView = null;
-                    SelectedItem = null;
-                }
-                else
-                {
-                    ItemsVM.CurrentView = new ItemDetailsViewModel(SelectedItem, ItemsVM);
-                }
+                ItemsVM.CurrentView = new EditMagicItemViewModel(SelectedItem, ItemsVM, false);
             });
 
-            OpenFileCommand = new RelayCommand(o =>
+            ViewImageCommand = new RelayCommand(o =>
             {
-                Image = new OpenFileDialogService().OpenFileDialog();
+                var imageWindow = new ImageWindow(new ImageViewModel(Image));
+                imageWindow.Show();
             });
 
         }
+
+        public ItemsViewModel ItemsVM { get; set; }
+
+
+        private MagicItemModel _selectedItem;
+
+        public MagicItemModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _name;
 
         public string Name
@@ -159,13 +145,45 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         }
 
         private string _properties;
-
         public string Properties
         {
             get { return _properties; }
             set
             {
                 _properties = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _rarity;
+        public string Rarity
+        {
+            get { return _rarity; }
+            set
+            {
+                _rarity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _bonus;
+        public string Bonus
+        {
+            get { return _bonus; }
+            set
+            {
+                _bonus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isCursed;
+        public bool IsCursed
+        {
+            get { return _isCursed; }
+            set
+            {
+                _isCursed = value;
                 OnPropertyChanged();
             }
         }

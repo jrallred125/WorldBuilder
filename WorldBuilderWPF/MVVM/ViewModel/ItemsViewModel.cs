@@ -11,7 +11,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 {
     public class ItemsViewModel : ObservableObject
     {
-        public List<string> Types { get; set; } = new List<string> { "Weapon", "Armor", "Healing", "Generic" };
+        public List<string> Types { get; set; } = new List<string> { "Weapon", "Armor", "Adventuring Gear", "Magic Item" };
 
         private ObservableCollection<ItemModel> _items;
 
@@ -89,6 +89,9 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 case "Armor":
                     CurrentView = new ArmorDetailsViewModel((ArmorModel)SelectedItem, this);
                     break;
+                case "Magic Item":
+                    CurrentView = new MagicItemDetailsViewModel((MagicItemModel)SelectedItem, this);
+                    break;
                 default:
                     CurrentView = new ItemDetailsViewModel(SelectedItem, this);
                     break;
@@ -111,15 +114,19 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 switch (TypeOfItem)
                 {
                     case "Weapon":
-                        WeaponModel weapon = new WeaponModel();
+                        WeaponModel weapon = new WeaponModel(TypeOfItem);
                         CurrentView = new EditWeaponViewModel(weapon, this, true);
                         break;
                     case "Armor":
-                        ArmorModel armor = new ArmorModel();
+                        ArmorModel armor = new ArmorModel(TypeOfItem);
                         CurrentView = new EditArmorViewModel(armor, this, true);
                         break;
+                    case "Magic Item":
+                        MagicItemModel magicItem = new MagicItemModel(TypeOfItem);
+                        CurrentView = new EditMagicItemViewModel(magicItem, this, true);
+                        break;
                     default:
-                        ItemModel item = new ItemModel();
+                        ItemModel item = new ItemModel(TypeOfItem);
                         CurrentView = new EditItemViewModel(item, this, true);
                         break;
                 }

@@ -14,9 +14,6 @@ namespace WorldBuilderWPF.MVVM.Model
         /// </summary>
         public string ArmorClass { get; set; } = "";
 
-        public ArmorModel()
-        {
-            Type = "Armor";
-        }
+        public ArmorModel(string type) : base(type) { }
     }
 }

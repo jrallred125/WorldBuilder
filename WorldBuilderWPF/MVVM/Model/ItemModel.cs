@@ -38,5 +38,10 @@ namespace WorldBuilderWPF.MVVM.Model
         /// </summary>
         public string Properties { get; set; } = "";
 
+        public ItemModel(string type)
+        {
+            Type = type;
+        }
+
     }
 }
