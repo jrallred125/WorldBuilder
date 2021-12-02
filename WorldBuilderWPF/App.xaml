@@ -100,6 +100,11 @@
             <DataTemplate DataType="{x:Type viewModel:ImageViewModel}">
                 <view:ImageView/>
             </DataTemplate>
+            
+            <!-- Gallery views and view Models-->
+            <DataTemplate DataType="{x:Type viewModel:GalleryViewModel}">
+                <view:GalleryView/>
+            </DataTemplate>
 
         </ResourceDictionary>
     </Application.Resources>

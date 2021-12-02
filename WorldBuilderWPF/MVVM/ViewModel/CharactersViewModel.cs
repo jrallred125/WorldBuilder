@@ -23,9 +23,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public RelayCommand NewCharacterCommand { get; set; }
 
-
-
-
         private object _currentView;
         public object CurrentView
         {

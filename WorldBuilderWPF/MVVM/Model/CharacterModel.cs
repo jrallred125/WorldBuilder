@@ -10,6 +10,10 @@ namespace WorldBuilderWPF.MVVM.Model
     public class CharacterModel
     {
         /// <summary>
+        /// A Gallery containing all the images for character. 
+        /// </summary>
+        public GalleryModel Gallery { get; set; } = new GalleryModel();
+        /// <summary>
         /// The name of the Character.
         /// </summary>
         public string Name { get; set; } = "";
@@ -56,6 +60,9 @@ namespace WorldBuilderWPF.MVVM.Model
         /// <summary>
         /// The Image to be used for the character.
         /// </summary>
-        public string ProfileImage { get; set; } = "";
+        public string ProfileImage {
+            get { return Gallery.GetMainImage(); }
+            set { Gallery.SetMainImage(value); }
+        }
     }
 }

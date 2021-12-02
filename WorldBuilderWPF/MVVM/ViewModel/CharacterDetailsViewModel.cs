@@ -12,6 +12,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public RelayCommand ViewImageCommand { get; set; }
 
+        public RelayCommand ViewGalleryCommand { get; set; }
+
 
         public CharacterDetailsViewModel(CharacterModel character, CharactersViewModel charactersViewModel)
         {
@@ -52,6 +54,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 var imageWindow = new ImageWindow(new ImageViewModel(ProfileImage));
                 imageWindow.Show();
             });
+
+            ViewGalleryCommand = new RelayCommand(o =>
+           {
+               charactersViewModel.CurrentView = new GalleryViewModel(character.Gallery);
+           });
 
         }
 
