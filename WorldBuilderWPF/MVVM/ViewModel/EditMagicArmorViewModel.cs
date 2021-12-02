@@ -1,12 +1,16 @@
-﻿using WorldBuilderWPF.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
-
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class EditMagicItemViewModel : EditItemViewModel
+    public class EditMagicArmorViewModel : EditArmorViewModel
     {
-        public EditMagicItemViewModel(MagicItemModel item, ItemsViewModel itemsVm, bool isNew) :base(item, itemsVm, isNew)
+        public EditMagicArmorViewModel(MagicArmorModel item, ItemsViewModel itemsVm, bool isNew) :base(item, itemsVm, isNew)
         {
             if (item != null)
             {
@@ -23,6 +27,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 item.Value = Value;
                 item.Weight = Weight;
                 item.Description = Description;
+                item.ArmorClass = ArmorClass;
                 item.Properties = Properties;
                 item.Rarity = Rarity;
                 item.Bonus = Bonus;
@@ -31,7 +36,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 {
                     DataController.Instance.AddItem(item);
                 }
-                itemsVm.CurrentView = new MagicItemDetailsViewModel(item, itemsVm);
+                itemsVm.CurrentView = new MagicArmorDetailsViewModel(item, itemsVm);
             });
 
             CancelCommand = new RelayCommand(o =>
@@ -42,11 +47,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 }
                 else
                 {
-                    itemsVm.CurrentView = new MagicItemDetailsViewModel(item, itemsVm);
+                    itemsVm.CurrentView = new MagicArmorDetailsViewModel(item, itemsVm);
                 }
             });
         }
-       
+
         private string _rarity;
         public string Rarity
         {

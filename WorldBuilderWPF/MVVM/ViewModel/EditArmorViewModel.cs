@@ -9,154 +9,46 @@ using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class EditArmorViewModel :ObservableObject
+    public class EditArmorViewModel :EditItemViewModel
     {
-        public RelayCommand SaveCommand { get; set; }
-
-        public RelayCommand CancelCommand { get; set; }
-        public RelayCommand OpenFileCommand { get; set; }
-
-        private ArmorModel _selectedItem;
-
-        public ArmorModel SelectedItem
+        public EditArmorViewModel(ArmorModel item, ItemsViewModel itemsVm, bool isNew) : base(item, itemsVm, isNew)
         {
-            get { return _selectedItem; }
-            set
+           
+            if (item != null)
             {
-                _selectedItem = value;
-                OnPropertyChanged();
-            }
-        }
-        private bool isNewCharacter { get; set; }
-
-        public ItemsViewModel ItemsVM { get; set; }
-
-        public EditArmorViewModel(ArmorModel item, ItemsViewModel itemsVM, bool isNew)
-        {
-            SelectedItem = item;
-            ItemsVM = itemsVM;
-            isNewCharacter = isNew;
-
-            if (SelectedItem != null)
-            {
-                Name = SelectedItem.Name;
-                Image = SelectedItem.Image;
-                Type = SelectedItem.Type;
-                Value = SelectedItem.Value;
-                Weight = SelectedItem.Weight;
-                Description = SelectedItem.Description;
-                ArmorClass = SelectedItem.ArmorClass;
-                Properties = SelectedItem.Properties;
+                ArmorClass = item.ArmorClass;
             }
 
             SaveCommand = new RelayCommand(o =>
             {
-                SelectedItem.Name = Name;
-                SelectedItem.Image = Image;
-                SelectedItem.Type = Type;
-                SelectedItem.Value = Value;
-                SelectedItem.Weight = Weight;
-                SelectedItem.Description = Description;
-                SelectedItem.ArmorClass = ArmorClass;
-                SelectedItem.Properties = Properties;
-                if (isNewCharacter)
+                item.Name = Name;
+                item.Image = Image;
+                item.Type = Type;
+                item.Value = Value;
+                item.Weight = Weight;
+                item.Description = Description;
+                item.ArmorClass = ArmorClass;
+                item.Properties = Properties;
+                if (isNew)
                 {
-                    DataController.Instance.AddItem(SelectedItem);
+                    DataController.Instance.AddItem(item);
                 }
-                ItemsVM.CurrentView = new ArmorDetailsViewModel(SelectedItem, ItemsVM);
+                itemsVm.CurrentView = new ArmorDetailsViewModel(item, itemsVm);
             });
 
             CancelCommand = new RelayCommand(o =>
             {
-                if (isNewCharacter)
+                if (isNew)
                 {
-                    itemsVM.CurrentView = null;
-                    SelectedItem = null;
+                    itemsVm.CurrentView = null;
                 }
                 else
                 {
-                    ItemsVM.CurrentView = new ArmorDetailsViewModel(SelectedItem, ItemsVM);
+                    itemsVm.CurrentView = new ArmorDetailsViewModel(item, itemsVm);
                 }
             });
-
-            OpenFileCommand = new RelayCommand(o =>
-            {
-                Image = new OpenFileDialogService().OpenFileDialog();
-            });
-
         }
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _image;
-
-        public string Image
-        {
-            get { return _image; }
-            set
-            {
-                _image = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _type;
-
-        public string Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _value;
-
-        public string Value
-        {
-            get { return _value; }
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _weight;
-
-        public string Weight
-        {
-            get { return _weight; }
-            set
-            {
-                _weight = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _description;
-
-        public string Description
-        {
-            get { return _description; }
-            set
-            {
-                _description = value;
-                OnPropertyChanged();
-            }
-        }
-
+        
         private string _armorClass;
 
         public string ArmorClass
@@ -165,18 +57,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             set
             {
                 _armorClass = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _properties;
-
-        public string Properties
-        {
-            get { return _properties; }
-            set
-            {
-                _properties = value;
                 OnPropertyChanged();
             }
         }

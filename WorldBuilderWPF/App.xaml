@@ -65,6 +65,18 @@
             <DataTemplate DataType="{x:Type viewModel:EditMagicItemViewModel}">
                 <view:EditMagicItemView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MagicWeaponDetailsViewModel}">
+                <view:MagicWeaponDetailsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:EditMagicWeaponViewModel}">
+                <view:EditMagicWeaponView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MagicArmorDetailsViewModel}">
+                <view:MagicArmorDetailsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:EditMagicArmorViewModel}">
+                <view:EditMagicArmorView/>
+            </DataTemplate>
             
             <!-- Location views and view models -->
             <DataTemplate DataType="{x:Type viewModel:LocationsViewModel}">

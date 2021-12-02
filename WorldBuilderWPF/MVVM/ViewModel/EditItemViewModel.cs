@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorldBuilderWPF.Core;
+﻿using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
 using WorldBuilderWPF.Services;
 
@@ -17,66 +12,46 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public RelayCommand OpenFileCommand { get; set; }
 
-
-        private ItemModel _selectedItem;
-
-        public ItemModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                _selectedItem = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool isNewCharacter { get; set; }
-
-        public ItemsViewModel ItemsVM { get; set; }
-
         public EditItemViewModel(ItemModel item, ItemsViewModel itemsVM, bool isNew)
         {
-            SelectedItem = item;
-            ItemsVM = itemsVM;
-            isNewCharacter = isNew;
 
-            if (SelectedItem != null)
+
+            if (item != null)
             {
-                Name = SelectedItem.Name;
-                Image = SelectedItem.Image;
-                Type = SelectedItem.Type;
-                Value = SelectedItem.Value;
-                Weight = SelectedItem.Weight;
-                Description = SelectedItem.Description;
-                Properties = SelectedItem.Properties;
+                Name = item.Name;
+                Image = item.Image;
+                Type = item.Type;
+                Value = item.Value;
+                Weight = item.Weight;
+                Description = item.Description;
+                Properties = item.Properties;
             }
 
             SaveCommand = new RelayCommand(o =>
             {
-                SelectedItem.Name = Name;
-                SelectedItem.Image = Image;
-                SelectedItem.Type = Type;
-                SelectedItem.Value = Value;
-                SelectedItem.Weight = Weight;
-                SelectedItem.Description = Description;
-                SelectedItem.Properties = Properties;
-                if (isNewCharacter)
+                item.Name = Name;
+                item.Image = Image;
+                item.Type = Type;
+                item.Value = Value;
+                item.Weight = Weight;
+                item.Description = Description;
+                item.Properties = Properties;
+                if (isNew)
                 {
-                    DataController.Instance.AddItem(SelectedItem);
+                    DataController.Instance.AddItem(item);
                 }
-                ItemsVM.CurrentView = new ItemDetailsViewModel(SelectedItem, ItemsVM);
+                itemsVM.CurrentView = new ItemDetailsViewModel(item, itemsVM);
             });
 
             CancelCommand = new RelayCommand(o =>
             {
-                if (isNewCharacter)
+                if (isNew)
                 {
-                    ItemsVM.CurrentView = null;
-                    SelectedItem = null;
+                    itemsVM.CurrentView = null;
                 }
                 else
                 {
-                    ItemsVM.CurrentView = new ItemDetailsViewModel(SelectedItem, ItemsVM);
+                    itemsVM.CurrentView = new ItemDetailsViewModel(item, itemsVM);
                 }
             });
 

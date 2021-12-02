@@ -1,13 +1,17 @@
-﻿using WorldBuilderWPF.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class MagicItemDetailsViewModel : ItemDetailsViewModel
+    public class MagicArmorDetailsViewModel : ArmorDetailsViewModel
     {
-        public MagicItemDetailsViewModel(MagicItemModel item, ItemsViewModel itemsVm) :base(item, itemsVm)
+        public MagicArmorDetailsViewModel(MagicArmorModel item, ItemsViewModel itemsVm):base(item, itemsVm)
         {
-            
             if (item != null)
             {
                 Rarity = item.Rarity;
@@ -17,9 +21,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             EditItemCommand = new RelayCommand(o =>
             {
-                itemsVm.CurrentView = new EditMagicItemViewModel(item, itemsVm, false);
+                itemsVm.CurrentView = new EditMagicArmorViewModel(item, itemsVm, false);
             });
-
         }
 
         private string _rarity;

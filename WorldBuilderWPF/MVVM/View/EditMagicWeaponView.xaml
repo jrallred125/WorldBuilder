@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WorldBuilderWPF.MVVM.View.EditMagicItemView"
+﻿<UserControl x:Class="WorldBuilderWPF.MVVM.View.EditMagicWeaponView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,9 +24,8 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="275"/>
+                <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
-
             <StackPanel Grid.Column="1">
                 <Button Margin="5,5"
                         Content="Open File"
@@ -67,18 +66,18 @@
                                     </Grid>
                                 </Border>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5">
+                            <WrapPanel>
                                 <Label Content="Type:"
-                                       Foreground="White"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Margin="1,0,0,0"/>
-                                <TextBlock Text="{Binding Type}"
-                                           Foreground="LightGray"
+                                           Foreground="White"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
-                                           Margin="1,0,0,0"
-                                           TextWrapping="wrap"/>
+                                           Margin="1,0,0,0"/>
+                                <TextBlock Text="{Binding Type}"
+                                               Foreground="LightGray"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"                                         
+                                               Margin="1,0,0,0"
+                                               TextWrapping="wrap"/>
                                 <Label Content="Cursed:"
                                        Foreground="White"
                                        HorizontalAlignment="Center"
@@ -86,8 +85,8 @@
                                        Margin="10,0,0,0"/>
                                 <CheckBox IsChecked="{Binding IsCursed}"
                                           VerticalAlignment="Center"
-                                          Background="White"
-                                          Foreground="White"/>                                
+                                          Background="white"
+                                          Foreground="White"/>
                             </WrapPanel>
                             <WrapPanel Margin="0,5">
                                 <Label Content="Value:"
@@ -165,6 +164,31 @@
                                 </Border>
                             </WrapPanel>
                             <WrapPanel Margin="0,5">
+                                <Label Content="Damage:"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="1,0,0,0"/>
+                                <Border CornerRadius="8"
+                                    Background="#3e4147"
+                                    MinWidth="250"
+                                    MinHeight="20"
+                                    MaxHeight="75">
+                                    <Grid>
+                                        <TextBox Text="{Binding Damage}"
+                                             VerticalAlignment="Stretch"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalAlignment="Stretch"
+                                             Background="Transparent"
+                                             TextWrapping="Wrap"
+                                             BorderThickness="0"
+                                             ScrollViewer.CanContentScroll="True"
+                                             Foreground="LightGray"
+                                             CaretBrush="LightGray"/>
+                                    </Grid>
+                                </Border>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,5">
                                 <Label Content="Rarity:"
                                    Foreground="White"
                                    HorizontalAlignment="Center"
@@ -214,12 +238,12 @@
                                     </Grid>
                                 </Border>
                             </WrapPanel>
-                            <WrapPanel Margin="0,5">
+                            <WrapPanel>
                                 <Label Content="Image:"
                                    Foreground="White"
-                                   HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="1,0,0,0"/>
+
                                 <Border CornerRadius="8"
                                     Background="#3e4147"
                                     MinWidth="250"

@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorldBuilderWPF.Core;
+﻿using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
+using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
     public class CharactersViewModel : ObservableObject
     {
-        private ObservableCollection<CharacterModel> _characters;
+        private ObservableCollectionEx<CharacterModel> _characters;
 
-        public ObservableCollection<CharacterModel> Characters
+        public ObservableCollectionEx<CharacterModel> Characters
         {
             get { return _characters; }
             set

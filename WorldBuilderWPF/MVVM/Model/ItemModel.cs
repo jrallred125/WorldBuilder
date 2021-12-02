@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WorldBuilderWPF.MVVM.Model
 {
     [Serializable]
-    public class ItemModel
+    public class ItemModel :IItemModel
     {
         /// <summary>
         /// The name of the item.

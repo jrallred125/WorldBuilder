@@ -20,31 +20,26 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public ItemDetailsViewModel(ItemModel item, ItemsViewModel itemsVm)
         {
-            SelectedItem = item;
-            ItemsVM = itemsVm;
-            if (SelectedItem != null)
+            if (item != null)
             {
-                Name = SelectedItem.Name;
-                Image = SelectedItem.Image;
-                Type = SelectedItem.Type;
-                Value = SelectedItem.Value;
-                Weight = SelectedItem.Weight;
-                Description = SelectedItem.Description;
-                Properties = SelectedItem.Properties;
+                Name = item.Name;
+                Image = item.Image;
+                Type = item.Type;
+                Value = item.Value;
+                Weight = item.Weight;
+                Description = item.Description;
+                Properties = item.Properties;
             }
-
-
 
             DeleteItemCommand = new RelayCommand(o =>
             {
-                ItemsVM.CurrentView = null;
-                DataController.Instance.RemoveItem(SelectedItem);
-                SelectedItem = null;
+                itemsVm.CurrentView = null;
+                DataController.Instance.RemoveItem(item);
             });
 
             EditItemCommand = new RelayCommand(o =>
             {
-                ItemsVM.CurrentView = new EditItemViewModel(SelectedItem, ItemsVM, false);
+                itemsVm.CurrentView = new EditItemViewModel(item, itemsVm, false);
             });
 
             ViewImageCommand = new RelayCommand(o =>
@@ -53,21 +48,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 imageWindow.Show();
             });
 
-        }
-
-        public ItemsViewModel ItemsVM { get; set; }
-
-
-        private ItemModel _selectedItem;
-
-        public ItemModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                _selectedItem = value;
-                OnPropertyChanged();
-            }
         }
 
         private string _name;

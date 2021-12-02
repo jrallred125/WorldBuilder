@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Text.Json;
 using WorldBuilderWPF.MVVM.Model;
+using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.Core
 {
@@ -40,11 +39,11 @@ namespace WorldBuilderWPF.Core
             }
         }
 
-        public ObservableCollection<CharacterModel> Characters { get; set; }
+        public ObservableCollectionEx<CharacterModel> Characters { get; set; }
 
-        public ObservableCollection<LoreModel> Lore { get; set; }
+        public ObservableCollectionEx<LoreModel> Lore { get; set; }
 
-        public ObservableCollection<ItemModel> Items { get; set; }
+        public ObservableCollectionEx<ItemModel> Items { get; set; }
 
 
         private DataController()
@@ -58,35 +57,35 @@ namespace WorldBuilderWPF.Core
             if (File.Exists(characterfile))
             {
                 string jsonString = File.ReadAllText(characterfile);
-                Characters = JsonConvert.DeserializeObject<ObservableCollection<CharacterModel>>(jsonString, settings);
+                Characters = JsonConvert.DeserializeObject<ObservableCollectionEx<CharacterModel>>(jsonString, settings);
             }
-            else Characters = new ObservableCollection<CharacterModel>();
+            else Characters = new ObservableCollectionEx<CharacterModel>();
 
             string lorefile = $"{path}{loreJsonFile}"; ;
             if (File.Exists(lorefile))
             {
                 string jsonString = File.ReadAllText(lorefile);
-                Lore = JsonConvert.DeserializeObject<ObservableCollection<LoreModel>>(jsonString, settings);
+                Lore = JsonConvert.DeserializeObject<ObservableCollectionEx<LoreModel>>(jsonString, settings);
             }
-            else Lore = new ObservableCollection<LoreModel>();
+            else Lore = new ObservableCollectionEx<LoreModel>();
 
             string itemfile = $"{path}{itemsJsonFile}"; ;
             if (File.Exists(itemfile))
             {
                 string jsonString = File.ReadAllText(itemfile);
-                Items = JsonConvert.DeserializeObject<ObservableCollection<ItemModel>>(jsonString,settings);
+                Items = JsonConvert.DeserializeObject<ObservableCollectionEx<ItemModel>>(jsonString,settings);
             }
-            else Items = new ObservableCollection<ItemModel>();
+            else Items = new ObservableCollectionEx<ItemModel>();
         }
 
 
-        public ObservableCollection<CharacterModel> SearchCharacters(string value)
+        public ObservableCollectionEx<CharacterModel> SearchCharacters(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                return Characters;
+                return new ObservableCollectionEx<CharacterModel>(Characters);
             }
-            ObservableCollection<CharacterModel> found = new ObservableCollection<CharacterModel>();
+            ObservableCollectionEx<CharacterModel> found = new ObservableCollectionEx<CharacterModel>();
             foreach (var character in Characters)
             {
                 if (character.Name.ToLower().Contains(value.ToLower())|| character.Race.ToLower().Contains(value.ToLower())|| character.Gender.ToLower().StartsWith(value.ToLower()))
@@ -97,13 +96,13 @@ namespace WorldBuilderWPF.Core
             return found;
         }
 
-        public ObservableCollection<LoreModel> SearchLore(string value)
+        public ObservableCollectionEx<LoreModel> SearchLore(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
                 return Lore;
             }
-            ObservableCollection<LoreModel> found = new ObservableCollection<LoreModel>();
+            ObservableCollectionEx<LoreModel> found = new ObservableCollectionEx<LoreModel>();
             foreach (var lore in Lore)
             {
                 if (lore.Title.ToLower().Contains(value.ToLower()) || lore.Type.ToLower().Contains(value.ToLower()))
@@ -114,13 +113,13 @@ namespace WorldBuilderWPF.Core
             return found;
         }
 
-        public ObservableCollection<ItemModel> SearchItems(string value)
+        public ObservableCollectionEx<ItemModel> SearchItems(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
                 return Items;
             }
-            ObservableCollection<ItemModel> found = new ObservableCollection<ItemModel>();
+            ObservableCollectionEx<ItemModel> found = new ObservableCollectionEx<ItemModel>();
             foreach (var item in Items)
             {
                 if (item.Name.ToLower().Contains(value.ToLower()) || item.Type.ToLower().Contains(value.ToLower()))
@@ -134,31 +133,37 @@ namespace WorldBuilderWPF.Core
         public void AddCharacter(CharacterModel character)
         {
             Characters.Add(character);
+            Characters.Sort(p => p.Name);
         }
 
         public void RemoveCharacter(CharacterModel character)
         {
             Characters.Remove(character);
+            Characters.Sort(p => p.Name);
         }
 
         public void AddLore(LoreModel lore)
         {
             Lore.Add(lore);
+            Lore.Sort(p => p.Title);
         }
 
         public void RemoveLore(LoreModel lore)
         {
             Lore.Remove(lore);
+            Lore.Sort(p => p.Title);
         }
 
         public void AddItem(ItemModel item)
         {
             Items.Add(item);
+            Items.Sort(p => p.Name);
         }
 
         public void RemoveItem(ItemModel item)
         {
             Items.Remove(item);
+            Items.Sort(p => p.Name);
         }
 
         public CharacterModel GetRandomCharacter()

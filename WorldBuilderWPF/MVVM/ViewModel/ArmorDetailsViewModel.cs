@@ -1,145 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WorldBuilderWPF.Core;
+﻿using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class ArmorDetailsViewModel:ObservableObject
+    public class ArmorDetailsViewModel: ItemDetailsViewModel
     {
-        public RelayCommand EditItemCommand { get; set; }
-
-        public RelayCommand DeleteItemCommand { get; set; }
-
-        public RelayCommand ViewImageCommand { get; set; }
-
-
-        public ArmorDetailsViewModel(ArmorModel item, ItemsViewModel itemsVm)
+        public ArmorDetailsViewModel(ArmorModel item, ItemsViewModel itemsVm): base(item, itemsVm)
         {
-            SelectedItem = item;
-            ItemsVM = itemsVm;
-            if (SelectedItem != null)
+            if (item != null)
             {
-                Name = SelectedItem.Name;
-                Image = SelectedItem.Image;
-                Type = SelectedItem.Type;
-                Value = SelectedItem.Value;
-                Weight = SelectedItem.Weight;
-                Description = SelectedItem.Description;
-                ArmorClass = SelectedItem.ArmorClass;
-                Properties = SelectedItem.Properties;
+                ArmorClass = item.ArmorClass;
             }
-
-
-
-            DeleteItemCommand = new RelayCommand(o =>
-            {
-                ItemsVM.CurrentView = null;
-                DataController.Instance.RemoveItem(SelectedItem);
-                SelectedItem = null;
-            });
 
             EditItemCommand = new RelayCommand(o =>
             {
-                ItemsVM.CurrentView = new EditArmorViewModel(SelectedItem, ItemsVM, false);
+                itemsVm.CurrentView = new EditArmorViewModel(item, itemsVm, false);
             });
 
-            ViewImageCommand = new RelayCommand(o =>
-            {
-                var imageWindow = new ImageWindow(new ImageViewModel(Image));
-                imageWindow.Show();
-            });
-
-        }
-
-        public ItemsViewModel ItemsVM { get; set; }
-
-
-        private ArmorModel _selectedItem;
-
-        public ArmorModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                _selectedItem = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _image;
-
-        public string Image
-        {
-            get { return _image; }
-            set
-            {
-                _image = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _type;
-
-        public string Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _value;
-
-        public string Value
-        {
-            get { return _value; }
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _weight;
-
-        public string Weight
-        {
-            get { return _weight; }
-            set
-            {
-                _weight = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _description;
-
-        public string Description
-        {
-            get { return _description; }
-            set
-            {
-                _description = value;
-                OnPropertyChanged();
-            }
         }
 
         private string _armorClass;
@@ -154,16 +31,5 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
-        private string _properties;
-
-        public string Properties
-        {
-            get { return _properties; }
-            set
-            {
-                _properties = value;
-                OnPropertyChanged();
-            }
-        }
     }
 }
