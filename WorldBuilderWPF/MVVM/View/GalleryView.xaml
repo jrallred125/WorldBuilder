@@ -17,19 +17,14 @@
                   Background="Transparent"
                   Foreground="Gray"
                   BorderThickness="1"
-                  Margin="5,5">
+                  Margin="5,5"
+                  ItemContainerStyle="{StaticResource GalleryCard}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
+                    <UniformGrid Columns="3"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Image Source="{Binding}" MaxWidth="165" MaxHeight="165" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+
         </ListView>
 
         <StackPanel Grid.Column="1">
