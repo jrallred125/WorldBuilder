@@ -14,21 +14,23 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
                     <Border Background="{TemplateBinding Background}"
-                            Height="160"
+                            Height="200"
                             Width="160"
                             CornerRadius="4"
                             Margin="8,2,8,2">
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="5">
-                            <Ellipse Width="150" Height="150"
+                        <Ellipse Width="150" Height="190"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding}"
-                                                />
-                                </Ellipse.Fill>
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding}"
+                                            RenderOptions.BitmapScalingMode="Fant"/>
+                            </Ellipse.Fill>
                             </Ellipse>
-                        </StackPanel>
+                            <!--<Image Source="{Binding}"
+                               Margin="10"
+                               MaxHeight="150"
+                               MaxWidth="150"
+                               RenderOptions.BitmapScalingMode="Fant"/>-->
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

@@ -14,11 +14,14 @@
         
         <ListView Grid.Column="0"
                   ItemsSource="{Binding Gallery.Images}"
+                  SelectedItem="{Binding SelectedImage}"
                   Background="Transparent"
                   Foreground="Gray"
                   BorderThickness="1"
                   Margin="5,5"
-                  ItemContainerStyle="{StaticResource GalleryCard}">
+                  ItemContainerStyle="{StaticResource GalleryCard}" 
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Left">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="3"/>
@@ -27,55 +30,82 @@
 
         </ListView>
 
-        <StackPanel Grid.Column="1">
-            <Image Source="{Binding NewImage}"
-                   Width="275"
-                   Height="275"
-                   Margin="10"/>
-            <WrapPanel VerticalAlignment="Center"
-                       HorizontalAlignment="Center">
-                <Button Margin="5,5"
-                        Content="Open File"
-                        Background="#333355"
-                        Foreground="White"
-                        FontWeight="Medium"
-                        FontSize="12"
-                        Width="75"
-                        Command="{Binding OpenFileCommand}"/>
-                <Button Margin="5,5"
-                        Content="Add Image"
-                        Background="#333355"
-                        Foreground="White"
-                        FontWeight="Medium"
-                        FontSize="12"
-                        Width="75"
-                        Command="{Binding AddIamgeCommand}"/>
-            </WrapPanel>
-            <WrapPanel Margin="0,5">
-                <Label Content="Image:"
-                       Foreground="White"
-                       HorizontalAlignment="Center"
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="90"/>
+            </Grid.RowDefinitions>       
+            <StackPanel Grid.Row="0">
+                <Image Source="{Binding NewImage}"
+                       Width="275"
+                       Height="275"
+                       Margin="10"/>
+                <WrapPanel VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                    <Button Margin="5,5"
+                            Content="Open File"
+                            Background="#333355"
+                            Foreground="White"
+                            FontWeight="Medium"
+                            FontSize="12"
+                            Width="75"
+                            Command="{Binding OpenFileCommand}"/>
+                    <Button Margin="5,5"
+                            Content="Add Image"
+                            Background="#333355"
+                            Foreground="White"
+                            FontWeight="Medium"
+                            FontSize="12"
+                            Width="75"
+                            Command="{Binding AddIamgeCommand}"/>
+                </WrapPanel>
+                <WrapPanel Margin="0,5">
+                    <Label Content="Image:"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="1,0,0,0"/>
+                    <Border CornerRadius="8"
+                            Background="#3e4147"
+                            MinWidth="250"
+                            MinHeight="20"
+                            MaxHeight="75">
+                        <Grid>
+                            <TextBox Text="{Binding NewImage}"
+                                     VerticalAlignment="Stretch"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalAlignment="Stretch"
+                                     Background="Transparent"
+                                     TextWrapping="Wrap"
+                                     BorderThickness="0"
+                                     ScrollViewer.CanContentScroll="True"
+                                     Foreground="LightGray"
+                                     CaretBrush="LightGray"/>
+                        </Grid>
+                    </Border>
+                </WrapPanel>
+            </StackPanel>
+            <WrapPanel Grid.Row="1"
                        VerticalAlignment="Center"
-                       Margin="1,0,0,0"/>
-                <Border CornerRadius="8"
-                        Background="#3e4147"
-                        MinWidth="250"
-                        MinHeight="20"
-                        MaxHeight="75">
-                    <Grid>
-                        <TextBox Text="{Binding NewImage}"
-                                 VerticalAlignment="Stretch"
-                                 VerticalContentAlignment="Center"
-                                 HorizontalAlignment="Stretch"
-                                 Background="Transparent"
-                                 TextWrapping="Wrap"
-                                 BorderThickness="0"
-                                 ScrollViewer.CanContentScroll="True"
-                                 Foreground="LightGray"
-                                 CaretBrush="LightGray"/>
-                    </Grid>
-                </Border>
+                       HorizontalAlignment="Center">
+                <Button Margin="5"
+                        Content="Open Image"
+                        Background="#333355"
+                        Foreground="White"
+                        FontWeight="Medium"
+                        FontSize="12"
+                        Width="80"
+                        Command="{Binding ViewImageCommand}"/>
+                <Button Margin="5"
+                        Content="Remove Image"
+                        Background="#333355"
+                        Foreground="White"
+                        FontWeight="Medium"
+                        FontSize="12"
+                        Width="90"
+                        Command="{Binding RemoveImageCommand}"/>
             </WrapPanel>
-        </StackPanel>
+           
+        </Grid>
     </Grid>
 </UserControl>

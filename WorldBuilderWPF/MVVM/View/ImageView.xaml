@@ -8,6 +8,7 @@
              d:DesignHeight="600" d:DesignWidth="1200"
              Background="Transparent">
     <Grid>
-        <Image Source="{Binding Image}"/>
+        <Image Source="{Binding Image}"
+               RenderOptions.BitmapScalingMode="Fant"/>
     </Grid>
 </UserControl>

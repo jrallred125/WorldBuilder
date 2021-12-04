@@ -14,6 +14,10 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public RelayCommand OpenFileCommand { get; set; }
 
         public RelayCommand AddIamgeCommand { get; set; }
+
+        public RelayCommand ViewImageCommand { get; set; }
+
+        public RelayCommand RemoveImageCommand { get; set; }
         public GalleryViewModel(GalleryModel gallery)
         {
             Gallery = gallery;
@@ -27,6 +31,18 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             {
                 Gallery.AddIamge(NewImage);
                 NewImage = "";
+            });
+
+            ViewImageCommand = new RelayCommand(o =>
+            {
+                var imageWindow = new ImageWindow(new ImageViewModel(SelectedImage));
+                imageWindow.Show();
+            });
+
+            RemoveImageCommand = new RelayCommand(o =>
+            {
+                Gallery.RemoveImage(SelectedImage);
+                SelectedImage = null;
             });
         }
 
@@ -51,6 +67,18 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        private string _selectedImage;
+
+        public string SelectedImage
+        {
+            get { return _selectedImage; }
+            set { 
+                _selectedImage = value;
+                OnPropertyChanged();
+            }
+        }
+
 
 
 
