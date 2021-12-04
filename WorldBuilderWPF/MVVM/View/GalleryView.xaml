@@ -21,10 +21,10 @@
                   Margin="5,5"
                   ItemContainerStyle="{StaticResource GalleryCard}" 
                   VerticalAlignment="Top"
-                  HorizontalAlignment="Left">
+                  HorizontalAlignment="Stretch">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="3"/>
+                    <UniformGrid Columns="2"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
@@ -89,7 +89,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center">
                 <Button Margin="5"
-                        Content="Open Image"
+                        Content="View Image"
                         Background="#333355"
                         Foreground="White"
                         FontWeight="Medium"

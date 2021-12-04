@@ -14,7 +14,7 @@ namespace WorldBuilderWPF.Services
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Title = "Select an Image";
-            openFile.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            openFile.Filter = "Image Files (*.jpeg; *.jpg; *.png;)|*.jpeg; *.jpg; *.png;|PNG files|*.png|JPEG files|*.jpg;*.jepg";
             openFile.Multiselect = false;
             if (openFile.ShowDialog() == true)
             {
