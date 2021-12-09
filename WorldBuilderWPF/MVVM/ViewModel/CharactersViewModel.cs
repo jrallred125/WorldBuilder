@@ -43,6 +43,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             {
                 _searchProp = value;
                 OnPropertyChanged();
+                Search();
             }
         }
 
@@ -72,7 +73,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             SearchCommand = new RelayCommand(o =>
             {
-                Characters = DataController.Instance.SearchCharacters(SearchProp);
+                Search();
             });
 
             NewCharacterCommand = new RelayCommand(o =>
@@ -81,6 +82,10 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 CurrentView = new EditCharacterViewModel(character, this, true);
             });
 
+        }
+        private void Search()
+        {
+            Characters = DataController.Instance.SearchCharacters(SearchProp);
         }
     }
 }

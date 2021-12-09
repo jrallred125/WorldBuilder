@@ -17,6 +17,8 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public RelayCommand ViewImageCommand { get; set; }
 
+        public RelayCommand SetMainImageCommand { get; set; }
+
         public RelayCommand RemoveImageCommand { get; set; }
         public GalleryViewModel(GalleryModel gallery)
         {
@@ -43,6 +45,11 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             {
                 Gallery.RemoveImage(SelectedImage);
                 SelectedImage = null;
+            });
+
+            SetMainImageCommand = new RelayCommand(o => 
+            {
+                Gallery.SetMainImage(SelectedImage);
             });
         }
 

@@ -97,6 +97,14 @@
                         Width="80"
                         Command="{Binding ViewImageCommand}"/>
                 <Button Margin="5"
+                        Content="Set As Main"
+                        Background="#333355"
+                        Foreground="White"
+                        FontWeight="Medium"
+                        FontSize="12"
+                        Width="80"
+                        Command="{Binding SetMainImageCommand}"/>
+                <Button Margin="5"
                         Content="Remove Image"
                         Background="#333355"
                         Foreground="White"
