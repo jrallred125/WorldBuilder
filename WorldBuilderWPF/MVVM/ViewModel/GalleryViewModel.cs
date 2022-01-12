@@ -26,7 +26,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             OpenFileCommand = new RelayCommand(o =>
             {
-                NewImage = new OpenFileDialogService().OpenFileDialog();
+                NewImage = new FileDialogService().OpenFileDialogImage();
             });
 
             AddIamgeCommand = new RelayCommand(o =>

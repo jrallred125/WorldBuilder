@@ -27,7 +27,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public LocationsViewModel LocationsVm { get; set; }
 
-        public LoreViewModel LoreVm { get; set; }
+        public LoresViewModel LoresVm { get; set; }
 
 
         private object _currentView;
@@ -50,7 +50,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             CharactersVm = new CharactersViewModel();
             ItemsVm = new ItemsViewModel();
             LocationsVm = new LocationsViewModel();
-            LoreVm = new LoreViewModel();
+            LoresVm = new LoresViewModel();
 
             CurrentView = HomeVm;
 
@@ -63,21 +63,25 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             CharactersViewCommand = new RelayCommand(o =>
             {
                 CurrentView = CharactersVm;
+                CharactersVm.Update();
             });
 
             ItemsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = ItemsVm;
+                ItemsVm.Update();
             });
 
             LoreViewCommand = new RelayCommand(o =>
             {
-                CurrentView = LoreVm;
+                CurrentView = LoresVm;
+                LoresVm.Update();
             });
 
             LocationsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = LocationsVm;
+                LocationsVm.Update();
             });
 
         }

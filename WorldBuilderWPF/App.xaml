@@ -86,8 +86,8 @@
             </DataTemplate>
             
             <!-- Lore views and view models -->
-            <DataTemplate DataType="{x:Type viewModel:LoreViewModel}">
-                <view:LoreView/>
+            <DataTemplate DataType="{x:Type viewModel:LoresViewModel}">
+                <view:LoresView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:EditLoreViewModel}">
@@ -103,9 +103,17 @@
                 <view:ImageView/>
             </DataTemplate>
             
-            <!-- Gallery views and view Models-->
+            <!-- Gallery views and view models-->
             <DataTemplate DataType="{x:Type viewModel:GalleryViewModel}">
                 <view:GalleryView/>
+            </DataTemplate>
+            
+            <!-- World views and view models-->
+            <DataTemplate DataType="{x:Type viewModel:WorldViewModel}">
+                <view:WorldView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:NewWorldViewModel}">
+                <view:NewWorldView/>
             </DataTemplate>
 
         </ResourceDictionary>

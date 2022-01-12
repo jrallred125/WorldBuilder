@@ -5,50 +5,69 @@ using System.Text;
 using System.Threading.Tasks;
 using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
+using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
     public class HomeViewModel: ObservableObject
     {
-        public string CharacterName { get; set; } = "";
-        public string CharacterImage { get; set; } = "";
-        public string CharacterPersonality { get; set; } = "";
-        public string LoreTitle { get; set; } = "";
-        public string LoreImage { get; set; } = "";
-        public string LoreSummary { get; set; } = "";
+        public RelayCommand NewWorldCommand { get; set; }
 
-        public string ItemName { get; set; } = "";
-        public string ItemImage { get; set; } = "";
-        public string ItemDescription { get; set; } = "";
+        public RelayCommand DeleteWorldCommand { get; set; }
+
+        private string _selectedWorld;
+
+        public string SelectedWorld
+        {
+            get { return _selectedWorld; }
+            set { 
+                _selectedWorld = value;
+                OnPropertyChanged();
+                DataController.Instance.SwapWorlds(value);
+                CurrentView =  new WorldViewModel();
+            }
+        }
+
+        public ObservableCollectionEx<string> Worlds
+        {
+            get { return DataController.Instance.Worlds; }
+        }
+
+        private object _currentView;
+
+        public object CurrentView
+        {
+            get { return _currentView; }
+            set
+            {
+                _currentView = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public HomeViewModel()
         {
-            UpdateSplashPage();            
+            NewWorldCommand = new RelayCommand(o =>
+            {
+                CurrentView = new NewWorldViewModel(new WorldModel(), this);
+            });
+
+            DeleteWorldCommand = new RelayCommand(o => 
+            {
+                DataController.Instance.DeleteWorld();
+                SelectedWorld = "";
+                CurrentView = null;
+            });
         }
 
         public void UpdateSplashPage()
         {
-            CharacterModel character = DataController.Instance.GetRandomCharacter();
-            if (character != null)
+            if (Worlds.Count == 0)
             {
-                CharacterName = character.Name;
-                CharacterImage = character.ProfileImage;
-                CharacterPersonality = character.Personality;
+                CurrentView = new NewWorldViewModel(new WorldModel(), this);
             }
-            LoreModel lore = DataController.Instance.GetRandomLore();
-            if (lore != null)
-            {
-                LoreTitle = lore.Title;
-                LoreSummary = lore.Summary;
-                LoreImage = lore.Image;
-            }
-            ItemModel item = DataController.Instance.GetRandomItem();
-            if (item != null)
-            {
-                ItemName = item.Name;
-                ItemDescription = item.Description;
-                ItemImage = item.Image;
-            }
+            else CurrentView = new WorldViewModel();
         }
 
 

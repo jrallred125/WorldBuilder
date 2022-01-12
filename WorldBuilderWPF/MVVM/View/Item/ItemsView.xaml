@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WorldBuilderWPF.MVVM.View.HomeView"
+﻿<UserControl x:Class="WorldBuilderWPF.MVVM.View.ItemsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -171,39 +171,73 @@
             </Setter>
         </Style>
     </UserControl.Resources>
+    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0"
-                   VerticalAlignment="Center">
-            <ComboBox ItemsSource="{Binding Worlds}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   Content="Items"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="10,0,0,0"/>
+
+            <ListView Grid.Row="1"
+                      ItemsSource="{Binding Items}"
+                      SelectedItem="{Binding SelectedItem}"
+                      Background="Transparent"
+                      Foreground="Gray"
+                      BorderThickness="2"
+                      ItemContainerStyle="{StaticResource ItemCard}"
+                      Margin="5,5"/>
+
+            <TextBox Grid.Row="2"
+                     Text="Search"
+                     Style="{StaticResource SearchBox}"/>
+
+
+            <StackPanel Grid.Row="3">
+                <ComboBox ItemsSource="{Binding Types}"
                           IsEditable="True"
                           Margin="5"
-                          SelectedValue="{Binding SelectedWorld}"/>
-
-            <Button Grid.Row="3"
-                    Margin="5,5"
-                    Content="Create new World"
-                    Background="#333355"
-                    Foreground="White"
-                    FontWeight="Medium"
-                    Command="{Binding NewWorldCommand}"/>
-            <Button Grid.Row="3"
-                    Margin="5,5"
-                    Content="Delete Selected World"
-                    Background="#333355"
-                    Foreground="White"
-                    FontWeight="Medium"
-                    Command="{Binding DeleteWorldCommand}"/>
+                          SelectedValue="{Binding TypeOfItem}"/>
 
 
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Margin="5,5"
+                            Content="New Item"
+                            Background="#333355"
+                            Foreground="White"
+                            FontWeight="Medium"
+                            Command="{Binding NewItemCommand}"/>
+                    
+                    <Button Margin="5,5"
+                            Content="Import Item"
+                            Background="#333355"
+                            Foreground="White"
+                            FontWeight="Medium"
+                            Command="{Binding ImportItemCommand}"/>
 
-        </WrapPanel>
+                </WrapPanel>
+            </StackPanel>
+            
 
-        <StackPanel Grid.Row="1">
-            <ContentControl Content="{Binding CurrentView}"/>
-        </StackPanel>
+
+        </Grid>
+
+        <ContentControl Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
     </Grid>
 </UserControl>

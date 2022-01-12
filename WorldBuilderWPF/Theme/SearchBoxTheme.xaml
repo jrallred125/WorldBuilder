@@ -22,12 +22,9 @@
                                      Foreground="LightGray"
                                      CaretBrush="LightGray"
                                      Margin="8,0,0,0"
-                                     Text="{Binding SearchProp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Command="{Binding SearchCommand}" Key="Return"/>
-                                </TextBox.InputBindings>
+                                     Text="{Binding SearchProp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                            </TextBox>
+
 
                             <TextBlock IsHitTestVisible="False"
                                        Text="@Search"

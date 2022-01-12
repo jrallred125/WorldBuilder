@@ -6,7 +6,6 @@ using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.Core
 {
-    [Serializable]
     public class DataController
     {
         private static volatile DataController _instance;
@@ -14,12 +13,6 @@ namespace WorldBuilderWPF.Core
         private static object _mylock = new Object();
 
         private string path = "./data/";
-
-        private string characterJsonFile = "chardata.json";
-
-        private string loreJsonFile = "loredata.json";
-
-        private string itemsJsonFile = "itemsdata.json";
 
         public static DataController Instance
         {
@@ -39,12 +32,66 @@ namespace WorldBuilderWPF.Core
             }
         }
 
-        public ObservableCollectionEx<CharacterModel> Characters { get; set; }
+        private ObservableCollectionEx<string> _worlds;
 
-        public ObservableCollectionEx<LoreModel> Lore { get; set; }
+        public ObservableCollectionEx<string> Worlds
+        {
+            get { return _worlds; }
+            set { _worlds = value; }
+        }
 
-        public ObservableCollectionEx<ItemModel> Items { get; set; }
+        private WorldModel _selectedWorld;
 
+        public WorldModel  SelectedWorld
+        {
+            get { return _selectedWorld; }
+            set { _selectedWorld = value; }
+        }
+
+        private void ReadWorld(string name,JsonSerializerSettings settings)
+        {
+            string worldfile = $"{path}{name}.json";
+            if (File.Exists(worldfile))
+            {
+                string jsonString = File.ReadAllText(worldfile);
+                SelectedWorld= JsonConvert.DeserializeObject<WorldModel>(jsonString, settings);
+            }
+        }
+
+        public void SwapWorlds(string name)
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            WriteWorld(settings);
+            ReadWorld(name, settings);
+        }
+
+        public void AddNewWorld(WorldModel world)
+        {
+            Worlds.Add(world.Name);
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            WriteWorld(settings);
+            SelectedWorld = world;
+
+        }
+
+        public void DeleteWorld()
+        {
+            string worldPath = $"{path}{SelectedWorld.Name}.json";
+            Worlds.Remove(SelectedWorld.Name);
+            if (File.Exists(worldPath))
+            {
+                File.Delete(worldPath);
+            }
+            SelectedWorld = null;
+        }
 
         private DataController()
         {
@@ -53,149 +100,100 @@ namespace WorldBuilderWPF.Core
                 TypeNameHandling = TypeNameHandling.Objects,
                 Formatting = Formatting.Indented
             };
-            string characterfile = $"{path}{characterJsonFile}";
-            if (File.Exists(characterfile))
+            if (File.Exists($"{path}/worlds.json"))
             {
-                string jsonString = File.ReadAllText(characterfile);
-                Characters = JsonConvert.DeserializeObject<ObservableCollectionEx<CharacterModel>>(jsonString, settings);
+                string jsonString = File.ReadAllText($"{path}/worlds.json");
+                Worlds = JsonConvert.DeserializeObject<ObservableCollectionEx<string>>(jsonString, settings);
             }
-            else Characters = new ObservableCollectionEx<CharacterModel>();
-
-            string lorefile = $"{path}{loreJsonFile}"; ;
-            if (File.Exists(lorefile))
-            {
-                string jsonString = File.ReadAllText(lorefile);
-                Lore = JsonConvert.DeserializeObject<ObservableCollectionEx<LoreModel>>(jsonString, settings);
-            }
-            else Lore = new ObservableCollectionEx<LoreModel>();
-
-            string itemfile = $"{path}{itemsJsonFile}"; ;
-            if (File.Exists(itemfile))
-            {
-                string jsonString = File.ReadAllText(itemfile);
-                Items = JsonConvert.DeserializeObject<ObservableCollectionEx<ItemModel>>(jsonString,settings);
-            }
-            else Items = new ObservableCollectionEx<ItemModel>();
+            else Worlds = new ObservableCollectionEx<string>();
         }
 
 
         public ObservableCollectionEx<CharacterModel> SearchCharacters(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (SelectedWorld != null)
             {
-                return new ObservableCollectionEx<CharacterModel>(Characters);
+                return SelectedWorld.SearchCharacters(value);
             }
-            ObservableCollectionEx<CharacterModel> found = new ObservableCollectionEx<CharacterModel>();
-            foreach (var character in Characters)
-            {
-                if (character.Name.ToLower().Contains(value.ToLower())|| character.Race.ToLower().Contains(value.ToLower())|| character.Gender.ToLower().StartsWith(value.ToLower()))
-                {
-                    found.Add(character);
-                }
-            }
-            return found;
+            return null;
+            
         }
 
-        public ObservableCollectionEx<LoreModel> SearchLore(string value)
+        public ObservableCollectionEx<LoreModel> SearchLores(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (SelectedWorld != null)
             {
-                return Lore;
+                return SelectedWorld.SearchLores(value);
             }
-            ObservableCollectionEx<LoreModel> found = new ObservableCollectionEx<LoreModel>();
-            foreach (var lore in Lore)
-            {
-                if (lore.Title.ToLower().Contains(value.ToLower()) || lore.Type.ToLower().Contains(value.ToLower()))
-                {
-                    found.Add(lore);
-                }
-            }
-            return found;
+            return null;
         }
 
-        public ObservableCollectionEx<ItemModel> SearchItems(string value)
+        public ObservableCollectionEx<IItemModel> SearchItems(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (SelectedWorld != null)
             {
-                return Items;
+                return SelectedWorld.SearchItems(value);
             }
-            ObservableCollectionEx<ItemModel> found = new ObservableCollectionEx<ItemModel>();
-            foreach (var item in Items)
+            return null;
+        }
+
+        public ObservableCollectionEx<ILocationModel>SearchLocations(string value)
+        {
+            if (SelectedWorld != null)
             {
-                if (item.Name.ToLower().Contains(value.ToLower()) || item.Type.ToLower().Contains(value.ToLower()))
-                {
-                    found.Add(item);
-                }
+                return SelectedWorld.SearchLocations(value);
             }
-            return found;
+            return null;
         }
 
         public void AddCharacter(CharacterModel character)
         {
-            Characters.Add(character);
-            Characters.Sort(p => p.Name);
+            SelectedWorld.AddCharacter(character);
         }
 
         public void RemoveCharacter(CharacterModel character)
         {
-            Characters.Remove(character);
-            Characters.Sort(p => p.Name);
+            SelectedWorld.RemoveCharacter(character);
         }
 
         public void AddLore(LoreModel lore)
         {
-            Lore.Add(lore);
-            Lore.Sort(p => p.Title);
+            SelectedWorld.AddLore(lore);
         }
 
         public void RemoveLore(LoreModel lore)
         {
-            Lore.Remove(lore);
-            Lore.Sort(p => p.Title);
+            SelectedWorld.RemoveLore(lore);
         }
 
         public void AddItem(ItemModel item)
         {
-            Items.Add(item);
-            Items.Sort(p => p.Name);
+            SelectedWorld.AddItem(item);
         }
 
         public void RemoveItem(ItemModel item)
         {
-            Items.Remove(item);
-            Items.Sort(p => p.Name);
+            SelectedWorld.RemoveItem(item);
         }
 
         public CharacterModel GetRandomCharacter()
         {
-            if (Characters.Count > 0)
-            {
-                Random rand = new Random();
-                return Characters[rand.Next(0, Characters.Count)];
-            }
-            return null;
-            
+            return SelectedWorld.GetRandomCharacter();           
         }
 
         public LoreModel GetRandomLore()
         {
-            if (Lore.Count > 0)
-            {
-                Random rand = new Random();
-                return Lore[rand.Next(0, Lore.Count)];
-            }
-            return null;
-            
+            return SelectedWorld.GetRandomLore();            
         }
 
-        public ItemModel GetRandomItem()
+        public IItemModel GetRandomItem()
         {
-            if (Items.Count > 0)
-            {
-                Random rand = new Random();
-                return Items[rand.Next(0, Items.Count)];
-            }
-            return null;
+            return SelectedWorld.GetRandomItem();
+        }
+
+        public ILocationModel GetRandomLocation()
+        {
+            return SelectedWorld.GetRandomLocation();
         }
         public void OnExit()
         {
@@ -204,40 +202,113 @@ namespace WorldBuilderWPF.Core
                 TypeNameHandling = TypeNameHandling.Objects,
                 Formatting = Formatting.Indented
             };
-            WriteCharacters(settings);
-            WriteLore(settings);
-            WriteItems(settings);
+            WriteWorld(settings);
+            WriteWorldsList(settings);
         }
 
-        private void WriteCharacters(JsonSerializerSettings settings)
+        private void WriteWorldsList(JsonSerializerSettings settings)
         {
-            if (Characters.Count > 0)
+            string worldsPath = $"{path}/worlds.json";
+            string jsonCharacters = JsonConvert.SerializeObject(Worlds, settings);
+            File.WriteAllText(worldsPath, jsonCharacters);
+        }
+
+        private void WriteWorld(JsonSerializerSettings settings)
+        {
+            if (SelectedWorld != null)
             {
-                string characterfile = $"{path}{characterJsonFile}";
-                string jsonCharacters = JsonConvert.SerializeObject(Characters, settings);
-                File.WriteAllText(characterfile, jsonCharacters);
+                string worldPath = $"{path}{SelectedWorld.Name}.json";
+                string jsonCharacters = JsonConvert.SerializeObject(SelectedWorld, settings);
+                File.WriteAllText(worldPath, jsonCharacters);
             }
         }
 
-        private void WriteLore(JsonSerializerSettings settings)
+       
+        public void ImportCharacters(string fileName)
         {
-            if (Lore.Count > 0)
+            var settings = new JsonSerializerSettings()
             {
-                string lorefile = $"{path}{loreJsonFile}";
-                string jsonLore = JsonConvert.SerializeObject(Lore, settings);
-                File.WriteAllText(lorefile, jsonLore);
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                ObservableCollectionEx<CharacterModel> characters = JsonConvert.DeserializeObject<ObservableCollectionEx<CharacterModel>>(jsonString, settings);
+                foreach (var character in characters)
+                {
+                    AddCharacter(character);
+                }
+                
             }
         }
 
-        private void WriteItems(JsonSerializerSettings settings)
+        public void ExportCharacters(ObservableCollectionEx<CharacterModel> characters, string filepath)
         {
-            if (Items.Count > 0)
+            var settings = new JsonSerializerSettings()
             {
-                string itemsfile = $"{path}{itemsJsonFile}";
-                string jsonItems = JsonConvert.SerializeObject(Items, settings);
-                File.WriteAllText(itemsfile, jsonItems);
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            string jsonCharacters = JsonConvert.SerializeObject(characters, settings);
+            File.WriteAllText(filepath, jsonCharacters);
+        }
+        public void ImportLores(string fileName)
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                ObservableCollectionEx<LoreModel> lores = JsonConvert.DeserializeObject<ObservableCollectionEx<LoreModel>>(jsonString, settings);
+                foreach (var lore in lores)
+                {
+                    AddLore(lore);
+                }
             }
+        }
 
+        public void ExportLores(ObservableCollectionEx<LoreModel> lores, string filepath)
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            string jsonCharacters = JsonConvert.SerializeObject(lores, settings);
+            File.WriteAllText(filepath, jsonCharacters);
+        }
+
+        public void ImportItems(string fileName)
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                ObservableCollectionEx<IItemModel> items = JsonConvert.DeserializeObject<ObservableCollectionEx<IItemModel>>(jsonString, settings);
+                foreach (var item in items)
+                {
+                    AddItem((ItemModel)item);
+                }    
+            }
+        }
+
+        public void ExportItems(ObservableCollectionEx<IItemModel> items, string filepath)
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            string jsonCharacters = JsonConvert.SerializeObject(items, settings);
+            File.WriteAllText(filepath, jsonCharacters);
         }
     }
 }
