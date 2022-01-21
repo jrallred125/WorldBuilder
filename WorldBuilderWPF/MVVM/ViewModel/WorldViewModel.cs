@@ -11,6 +11,14 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
     public class WorldViewModel: ObservableObject
     {
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
         public string CharacterName { get; set; } = "";
         public string CharacterImage { get; set; } = "";
         public string CharacterPersonality { get; set; } = "";
@@ -37,6 +45,10 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public void UpdatePage()
         {
+            if (DataController.Instance.SelectedWorld != null)
+            {
+                Name = DataController.Instance.SelectedWorld.Name;
+            }
             CharacterModel character = DataController.Instance.GetRandomCharacter();
             if (character != null)
             {
