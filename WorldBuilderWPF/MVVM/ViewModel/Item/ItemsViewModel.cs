@@ -58,8 +58,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
         public void Update()
         {
-
-            Types.Sort();
             Items = DataController.Instance.SearchItems(SearchProp);
         }
 
@@ -155,6 +153,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             Items = DataController.Instance.SearchItems(SearchProp);
         }
 
-        public List<string> Types { get; set; } = new List<string> { "Weapon", "Armor", "Adventuring Gear", "Magic Item", "Magic Weapon", "Magic Armor" };
+        public ObservableCollectionEx<string> Types { get { return DataController.Instance.SelectedWorld.GetItemTypes(); } }
     }
 }

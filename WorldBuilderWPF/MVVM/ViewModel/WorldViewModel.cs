@@ -18,6 +18,24 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             get { return _name; }
             set { _name = value; }
         }
+        public int CharacterCount { 
+            get { return DataController.Instance.SelectedWorld.Characters.Count; }
+        }
+
+        public int LoresCount
+        {
+            get { return DataController.Instance.SelectedWorld.Lores.Count; }
+        }
+
+        public int ItemCount
+        {
+            get { return DataController.Instance.SelectedWorld.Items.Count; }
+        }
+
+        public int LocationsCount
+        {
+            get { return DataController.Instance.SelectedWorld.Locations.Count; }
+        }
 
         public string CharacterName { get; set; } = "";
         public string CharacterImage { get; set; } = "";
@@ -40,7 +58,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             {
                 UpdatePage();
             }
-            
         }
 
         public void UpdatePage()

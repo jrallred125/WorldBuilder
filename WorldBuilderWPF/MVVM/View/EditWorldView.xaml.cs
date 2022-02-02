@@ -18,9 +18,9 @@ namespace WorldBuilderWPF.MVVM.View
     /// <summary>
     /// Interaction logic for NewWorldView.xaml
     /// </summary>
-    public partial class NewWorldView : UserControl
+    public partial class EditWorldView : UserControl
     {
-        public NewWorldView()
+        public EditWorldView()
         {
             InitializeComponent();
         }

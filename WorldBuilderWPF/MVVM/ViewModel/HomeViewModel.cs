@@ -50,7 +50,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         {
             NewWorldCommand = new RelayCommand(o =>
             {
-                CurrentView = new NewWorldViewModel(new WorldModel(), this);
+                CurrentView = new EditWorldViewModel(new WorldModel(), this, true);
             });
 
             DeleteWorldCommand = new RelayCommand(o => 
@@ -65,7 +65,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         {
             if (Worlds.Count == 0)
             {
-                CurrentView = new NewWorldViewModel(new WorldModel(), this);
+                CurrentView = new EditWorldViewModel(new WorldModel(), this, true);
             }
             else CurrentView = new WorldViewModel();
         }

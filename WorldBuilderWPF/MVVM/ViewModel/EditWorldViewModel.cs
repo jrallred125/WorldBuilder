@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using WorldBuilderWPF.Core;
 using WorldBuilderWPF.MVVM.Model;
+using WorldBuilderWPF.Services;
 
 namespace WorldBuilderWPF.MVVM.ViewModel
 {
-    public class NewWorldViewModel : ObservableObject
+    public class EditWorldViewModel : ObservableObject
     {
         public RelayCommand SaveWorldCommand { get; set; }
 
@@ -36,15 +37,34 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             }
         }
 
-        public NewWorldViewModel(WorldModel world, HomeViewModel hmViewModel)
+        private ObservableCollectionEx<NameAndBool> _typesOfItems;
+
+        public ObservableCollectionEx<NameAndBool> TypesOfItems
         {
+            get { return _typesOfItems; }
+            set { _typesOfItems = value; }
+        }
+
+
+        public EditWorldViewModel(WorldModel world, HomeViewModel hmViewModel, bool newworld)
+        {
+            Name = world.Name;
+            Description = world.Description;
+            TypesOfItems = world.TypesOfItems;
+
             SaveWorldCommand = new RelayCommand(o => 
             {
                 world.Name = Name;
                 world.Description = Description;
+                world.TypesOfItems = TypesOfItems;
 
-                DataController.Instance.AddNewWorld(world);
+                if (newworld)
+                {
+                    DataController.Instance.AddNewWorld(world);
+                }
+                
                 hmViewModel.CurrentView = new WorldViewModel();
+
             });
 
             CancelCommand = new RelayCommand(o => 
@@ -53,5 +73,6 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             });
 
         }
+
     }
 }

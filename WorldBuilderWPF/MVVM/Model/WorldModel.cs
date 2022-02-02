@@ -14,21 +14,23 @@ namespace WorldBuilderWPF.MVVM.Model
 
         public string Description { get; set; }
 
-        public ObservableCollectionEx<string> ItemTypes { get; set; }
         public ObservableCollectionEx<CharacterModel> Characters { get; set; }
         public ObservableCollectionEx<LoreModel> Lores { get; set; }
         public ObservableCollectionEx<IItemModel> Items { get; set; }
         public ObservableCollectionEx<ILocationModel> Locations { get; set; }
-
+        public ObservableCollectionEx<NameAndBool> TypesOfItems { get; set; }
+        public ObservableCollectionEx<NameAndBool> TypesOfLocations { get; set; }
 
 
         public WorldModel()
         {
-            ItemTypes = new();
             Characters = new();
             Lores = new();
             Items = new();
             Locations = new();
+            TypesOfItems = new() { new NameAndBool("Weapon", false), new NameAndBool("Armor",false), new NameAndBool("Adventuring Gear", false), new NameAndBool("Magic Item", false), new NameAndBool("Magic Weapon", false), new NameAndBool("Magic Armor",false) };
+            TypesOfItems.Sort(p => p.Name);
+            TypesOfLocations = new();
         }
 
         public ObservableCollectionEx<CharacterModel> SearchCharacters(string value)
@@ -175,6 +177,19 @@ namespace WorldBuilderWPF.MVVM.Model
                 return Locations[rand.Next(0, Locations.Count)];
             }
             return null;
+        }
+
+        public ObservableCollectionEx<string> GetItemTypes()
+        {
+            ObservableCollectionEx<string> itemTypes = new();
+            foreach (var item in TypesOfItems)
+            {
+                if (item.Value)
+                {
+                    itemTypes.Add(item.Name);
+                }
+            }
+            return itemTypes;
         }
 
 

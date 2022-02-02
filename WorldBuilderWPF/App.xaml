@@ -18,7 +18,7 @@
                 <ResourceDictionary Source="Theme/LoreCard.xaml" />
                 <ResourceDictionary Source="Theme/ItemCard.xaml" />
                 <ResourceDictionary Source="Theme/GalleryCard.xaml" />
-                
+                <ResourceDictionary Source="Theme/LocationCard.xaml" />
                 
 
 
@@ -112,8 +112,8 @@
             <DataTemplate DataType="{x:Type viewModel:WorldViewModel}">
                 <view:WorldView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:NewWorldViewModel}">
-                <view:NewWorldView/>
+            <DataTemplate DataType="{x:Type viewModel:EditWorldViewModel}">
+                <view:EditWorldView/>
             </DataTemplate>
 
         </ResourceDictionary>
