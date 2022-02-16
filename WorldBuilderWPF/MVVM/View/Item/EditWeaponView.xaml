@@ -62,7 +62,8 @@
                                              TextWrapping="Wrap"
                                              BorderThickness="0"
                                              Foreground="LightGray"
-                                             CaretBrush="LightGray"/>
+                                             CaretBrush="LightGray"
+                                                 SpellCheck.IsEnabled="True"/>
                                     </Grid>
                                 </Border>
                             </WrapPanel>
@@ -100,7 +101,8 @@
                                              BorderThickness="0"
                                              ScrollViewer.CanContentScroll="True"
                                              Foreground="LightGray"
-                                             CaretBrush="LightGray"/>
+                                             CaretBrush="LightGray"
+                                                 SpellCheck.IsEnabled="True"/>
                                     </Grid>
                                 </Border>
                             </WrapPanel>
@@ -125,7 +127,8 @@
                                              BorderThickness="0"
                                              ScrollViewer.CanContentScroll="True"
                                              Foreground="LightGray"
-                                             CaretBrush="LightGray"/>
+                                             CaretBrush="LightGray"
+                                                 SpellCheck.IsEnabled="True"/>
                                     </Grid>
                                 </Border>
                             </WrapPanel>
@@ -150,7 +153,8 @@
                                              BorderThickness="0"
                                              ScrollViewer.CanContentScroll="True"
                                              Foreground="LightGray"
-                                             CaretBrush="LightGray"/>
+                                             CaretBrush="LightGray"
+                                                 SpellCheck.IsEnabled="True"/>
                                     </Grid>
                                 </Border>
                             </WrapPanel>
@@ -175,7 +179,8 @@
                                              BorderThickness="0"
                                              ScrollViewer.CanContentScroll="True"
                                              Foreground="LightGray"
-                                             CaretBrush="LightGray"/>
+                                             CaretBrush="LightGray"
+                                                 SpellCheck.IsEnabled="True"/>
                                     </Grid>
                                 </Border>
                             </WrapPanel>
@@ -192,15 +197,16 @@
                                     MaxHeight="75">
                                     <Grid>
                                         <TextBox Text="{Binding Image}"
-                                             VerticalAlignment="Stretch"
-                                             VerticalContentAlignment="Center"
-                                             HorizontalAlignment="Stretch"
-                                             Background="Transparent"
-                                             TextWrapping="Wrap"
-                                             BorderThickness="0"
-                                             ScrollViewer.CanContentScroll="True"
-                                             Foreground="LightGray"
-                                             CaretBrush="LightGray"/>
+                                                 VerticalAlignment="Stretch"
+                                                 VerticalContentAlignment="Center"
+                                                 HorizontalAlignment="Stretch"
+                                                 Background="Transparent"
+                                                 TextWrapping="Wrap"
+                                                 BorderThickness="0"
+                                                 ScrollViewer.CanContentScroll="True"
+                                                 Foreground="LightGray"
+                                                 CaretBrush="LightGray"
+                                                 SpellCheck.IsEnabled="True"/>
                                     </Grid>
                                 </Border>
                             </WrapPanel>
@@ -230,7 +236,8 @@
                                          BorderThickness="0"
                                          Foreground="LightGray"
                                          CaretBrush="LightGray"
-                                         AcceptsReturn="True"/>
+                                         AcceptsReturn="True"
+                                         SpellCheck.IsEnabled="True"/>
                             </Grid>
                         </Border>
                     </StackPanel>
