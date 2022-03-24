@@ -11,6 +11,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
     public class WorldViewModel: ObservableObject
     {
+        public RelayCommand EditWorldCommand { get; set; }
         private string _name;
 
         public string Name
@@ -52,11 +53,16 @@ namespace WorldBuilderWPF.MVVM.ViewModel
         public string ItemName { get; set; } = "";
         public string ItemImage { get; set; } = "";
         public string ItemDescription { get; set; } = "";
-        public WorldViewModel()
+        public WorldViewModel(HomeViewModel hmViewModel)
         {
             if (DataController.Instance.SelectedWorld != null)
             {
                 UpdatePage();
+
+                EditWorldCommand = new RelayCommand(o =>
+                {
+                    hmViewModel.CurrentView = new EditWorldViewModel(DataController.Instance.SelectedWorld, hmViewModel, false);
+                });
             }
         }
 

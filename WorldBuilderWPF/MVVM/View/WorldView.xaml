@@ -10,6 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
             <RowDefinition />
+            <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0"
                Content="{Binding Name}"
@@ -56,7 +57,7 @@
                            FontSize="16"/>
                 </WrapPanel>
             </StackPanel>
-            
+
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal"
                             Margin="20">
@@ -212,5 +213,16 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2">
+            <Button Margin="5,5"
+                    Content="Edit"
+                    Background="#333355"
+                    Foreground="White"
+                    FontWeight="Medium"
+                    FontSize="12"
+                    Width="50"
+                    Command="{Binding EditWorldCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

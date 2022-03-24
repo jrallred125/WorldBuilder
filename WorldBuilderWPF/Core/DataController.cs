@@ -223,7 +223,14 @@ namespace WorldBuilderWPF.Core
             }
         }
 
-       
+        public void RenameSelecetedWorld(string newName)
+        {
+            Worlds.Remove(SelectedWorld.Name);
+            Worlds.Add(newName);
+            File.Move($"{path}{SelectedWorld.Name}.json", $"{path}{newName}.json");
+        }
+
+
         public void ImportCharacters(string fileName)
         {
             var settings = new JsonSerializerSettings()
@@ -239,7 +246,6 @@ namespace WorldBuilderWPF.Core
                 {
                     AddCharacter(character);
                 }
-                
             }
         }
 
@@ -310,5 +316,33 @@ namespace WorldBuilderWPF.Core
             string jsonCharacters = JsonConvert.SerializeObject(items, settings);
             File.WriteAllText(filepath, jsonCharacters);
         }
+        public void ImportLocatons(string fileName)
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            if (File.Exists(fileName))
+            {
+                string jsonString = File.ReadAllText(fileName);
+                ObservableCollectionEx<ILocationModel> items = JsonConvert.DeserializeObject<ObservableCollectionEx<ILocationModel>>(jsonString, settings);
+                foreach (var item in items)
+                {
+                    AddItem((ItemModel)item);
+                }
+            }
+        }
+        public void ExportLocation(ObservableCollectionEx<ILocationModel> items, string filepath)
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            string jsonCharacters = JsonConvert.SerializeObject(items, settings);
+            File.WriteAllText(filepath, jsonCharacters);
+        }
+
     }
 }

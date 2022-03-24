@@ -24,7 +24,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                 _selectedWorld = value;
                 OnPropertyChanged();
                 DataController.Instance.SwapWorlds(value);
-                CurrentView =  new WorldViewModel();
+                CurrentView =  new WorldViewModel(this);
             }
         }
 
@@ -67,7 +67,7 @@ namespace WorldBuilderWPF.MVVM.ViewModel
             {
                 CurrentView = new EditWorldViewModel(new WorldModel(), this, true);
             }
-            else CurrentView = new WorldViewModel();
+            else CurrentView = new WorldViewModel(this);
         }
 
 

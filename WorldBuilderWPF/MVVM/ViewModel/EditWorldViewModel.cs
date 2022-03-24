@@ -54,6 +54,10 @@ namespace WorldBuilderWPF.MVVM.ViewModel
 
             SaveWorldCommand = new RelayCommand(o => 
             {
+                if (world.Name != Name && !newworld)
+                {
+                    DataController.Instance.RenameSelecetedWorld(Name);
+                }
                 world.Name = Name;
                 world.Description = Description;
                 world.TypesOfItems = TypesOfItems;
@@ -63,13 +67,19 @@ namespace WorldBuilderWPF.MVVM.ViewModel
                     DataController.Instance.AddNewWorld(world);
                 }
                 
-                hmViewModel.CurrentView = new WorldViewModel();
+                hmViewModel.CurrentView = new WorldViewModel(hmViewModel);
 
             });
 
             CancelCommand = new RelayCommand(o => 
             {
-                hmViewModel.CurrentView = null;
+                if (newworld)
+                {
+                    hmViewModel.CurrentView = null;
+                    return;
+                }
+                hmViewModel.CurrentView = new WorldViewModel(hmViewModel);
+
             });
 
         }
